@@ -1297,7 +1297,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     const STORAGE_KEY = "fantasy-giro-2026-v1";
-    const APP_VERSION = "2026-05-04-1515";
+    const APP_VERSION = "2026-05-04-1535";
     const SUPABASE_CONFIG = {
       url: "https://paxgisozkvofzmjztrwu.supabase.co",
       key: "sb_publishable_6HSHJ4TKGpSxvWhJUk7XXA_z1TW3Xrx",
@@ -1349,7 +1349,8 @@
       syncStatus: "local",
       syncMessage: "Mode local",
       saveTimer: null,
-      isSavingCloud: false
+      isSavingCloud: false,
+      pendingEmail: ""
     };
 
     function icon(name) {
@@ -2643,11 +2644,15 @@
       return `
         <div class="settings-grid">
           <span class="status-pill ${statusClass}">${escapeHtml(state.syncMessage)}</span>
-          <p class="subtitle">Connecte-toi avec l’email autorisé dans Supabase pour que les saisies soient enregistrées en ligne.</p>
+          <p class="subtitle">Connecte-toi avec l’email autorisé dans Supabase pour que les saisies soient enregistrées en ligne. Si le lien magique ne connecte pas automatiquement, utilise le code reçu par email.</p>
           <div class="action-row">
-            <input class="input" type="email" id="cloudEmail" placeholder="email autorisé">
+            <input class="input" type="email" id="cloudEmail" placeholder="email autorisé" value="${escapeAttr(state.pendingEmail)}">
             <button class="primary-btn" type="button" id="sendMagicLink">Envoyer le lien</button>
             <button class="secondary-btn" type="button" id="reloadCloud">${icon("download")}Recharger</button>
+          </div>
+          <div class="action-row">
+            <input class="input" type="text" id="cloudOtp" placeholder="code à 6 chiffres" inputmode="numeric" autocomplete="one-time-code">
+            <button class="primary-btn" type="button" id="verifyOtpCode">Valider le code</button>
           </div>
         </div>
       `;
@@ -2662,6 +2667,7 @@
 
     function bindCloudPanelEvents() {
       document.getElementById("sendMagicLink")?.addEventListener("click", sendMagicLink);
+      document.getElementById("verifyOtpCode")?.addEventListener("click", verifyOtpCode);
       document.getElementById("signOutCloud")?.addEventListener("click", signOutCloud);
       document.getElementById("reloadCloud")?.addEventListener("click", loadCloudData);
       document.getElementById("saveCloudNow")?.addEventListener("click", () => queueCloudSave(true));
@@ -2678,6 +2684,7 @@
         showToast("Ajoute ton email.");
         return;
       }
+      state.pendingEmail = email;
       setSyncStatus("saving", "Envoi du lien");
       const redirectTo = window.location.href.split("#")[0];
       const { error } = await state.supabaseClient.auth.signInWithOtp({
@@ -2692,6 +2699,37 @@
       }
       setSyncStatus("local", "Lien envoyé par email");
       showToast("Lien de connexion envoyé.");
+    }
+
+    async function verifyOtpCode() {
+      if (!state.supabaseClient) {
+        showToast("Supabase n’est pas chargé.");
+        return;
+      }
+      const email = document.getElementById("cloudEmail")?.value.trim();
+      const token = document.getElementById("cloudOtp")?.value.trim();
+      if (!email || !token) {
+        showToast("Ajoute l’email et le code reçu.");
+        return;
+      }
+      state.pendingEmail = email;
+      setSyncStatus("saving", "Vérification du code");
+      const { data, error } = await state.supabaseClient.auth.verifyOtp({
+        email,
+        token,
+        type: "email"
+      });
+      if (error) {
+        console.error(error);
+        setSyncStatus("error", "Code refusé");
+        showToast("Code refusé ou expiré.");
+        return;
+      }
+      state.supabaseUser = data?.user || data?.session?.user || null;
+      setSyncStatus("saved", "Connecté au cloud");
+      showToast("Connexion réussie.");
+      renderApp();
+      queueCloudSave(true);
     }
 
     async function signOutCloud() {
