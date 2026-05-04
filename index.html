@@ -1297,7 +1297,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     const STORAGE_KEY = "fantasy-giro-2026-v1";
-    const APP_VERSION = "2026-05-04-1535";
+    const APP_VERSION = "2026-05-04-1545";
     const SUPABASE_CONFIG = {
       url: "https://paxgisozkvofzmjztrwu.supabase.co",
       key: "sb_publishable_6HSHJ4TKGpSxvWhJUk7XXA_z1TW3Xrx",
@@ -2686,19 +2686,27 @@
       }
       state.pendingEmail = email;
       setSyncStatus("saving", "Envoi du lien");
-      const redirectTo = window.location.href.split("#")[0];
+      const redirectTo = getAuthRedirectUrl();
       const { error } = await state.supabaseClient.auth.signInWithOtp({
         email,
         options: { emailRedirectTo: redirectTo }
       });
       if (error) {
         console.error(error);
-        setSyncStatus("error", "Lien non envoyé");
-        showToast("Impossible d’envoyer le lien de connexion.");
+        const message = error.message || "Lien non envoyé";
+        setSyncStatus("error", message);
+        showToast(message);
         return;
       }
       setSyncStatus("local", "Lien envoyé par email");
       showToast("Lien de connexion envoyé.");
+    }
+
+    function getAuthRedirectUrl() {
+      const url = new URL(window.location.href);
+      url.search = "";
+      url.hash = "";
+      return url.toString();
     }
 
     async function verifyOtpCode() {
