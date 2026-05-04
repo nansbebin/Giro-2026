@@ -1297,7 +1297,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     const STORAGE_KEY = "fantasy-giro-2026-v1";
-    const APP_VERSION = "2026-05-04-1545";
+    const APP_VERSION = "2026-05-04-1555";
     const SUPABASE_CONFIG = {
       url: "https://paxgisozkvofzmjztrwu.supabase.co",
       key: "sb_publishable_6HSHJ4TKGpSxvWhJUk7XXA_z1TW3Xrx",
@@ -2654,6 +2654,10 @@
             <input class="input" type="text" id="cloudOtp" placeholder="code à 6 chiffres" inputmode="numeric" autocomplete="one-time-code">
             <button class="primary-btn" type="button" id="verifyOtpCode">Valider le code</button>
           </div>
+          <div class="action-row">
+            <input class="input" type="password" id="cloudPassword" placeholder="mot de passe Supabase" autocomplete="current-password">
+            <button class="secondary-btn" type="button" id="signInPassword">Connexion mot de passe</button>
+          </div>
         </div>
       `;
     }
@@ -2668,6 +2672,7 @@
     function bindCloudPanelEvents() {
       document.getElementById("sendMagicLink")?.addEventListener("click", sendMagicLink);
       document.getElementById("verifyOtpCode")?.addEventListener("click", verifyOtpCode);
+      document.getElementById("signInPassword")?.addEventListener("click", signInWithPassword);
       document.getElementById("signOutCloud")?.addEventListener("click", signOutCloud);
       document.getElementById("reloadCloud")?.addEventListener("click", loadCloudData);
       document.getElementById("saveCloudNow")?.addEventListener("click", () => queueCloudSave(true));
@@ -2734,6 +2739,37 @@
         return;
       }
       state.supabaseUser = data?.user || data?.session?.user || null;
+      setSyncStatus("saved", "Connecté au cloud");
+      showToast("Connexion réussie.");
+      renderApp();
+      queueCloudSave(true);
+    }
+
+    async function signInWithPassword() {
+      if (!state.supabaseClient) {
+        showToast("Supabase n’est pas chargé.");
+        return;
+      }
+      const email = document.getElementById("cloudEmail")?.value.trim();
+      const password = document.getElementById("cloudPassword")?.value;
+      if (!email || !password) {
+        showToast("Ajoute l’email et le mot de passe.");
+        return;
+      }
+      state.pendingEmail = email;
+      setSyncStatus("saving", "Connexion en cours");
+      const { data, error } = await state.supabaseClient.auth.signInWithPassword({
+        email,
+        password
+      });
+      if (error) {
+        console.error(error);
+        const message = error.message || "Connexion refusée";
+        setSyncStatus("error", message);
+        showToast(message);
+        return;
+      }
+      state.supabaseUser = data?.user || null;
       setSyncStatus("saved", "Connecté au cloud");
       showToast("Connexion réussie.");
       renderApp();
