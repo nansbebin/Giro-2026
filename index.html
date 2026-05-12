@@ -2708,11 +2708,11 @@
           </div>
         ` : ""}
         <div class="panel">
-          <h2 class="panel-title">Classement <small>Écarts au leader et à la place précédente</small></h2>
+          <h2 class="panel-title">Classement <small>Écart vs 1ère place et joueur précédent</small></h2>
           ${ranking.length ? `<div class="ranking-list">${ranking.map((row, index) => {
             const gapLeader = leader.score - row.score;
-            const previousDistinct = ranking.find((other) => other.score > row.score);
-            const gapPrevious = previousDistinct ? previousDistinct.score - row.score : 0;
+            const previousRow = ranking[index - 1];
+            const gapPrevious = previousRow ? previousRow.score - row.score : 0;
             const move = movementLabel(movement[row.player.id] || 0);
             return `
               <article class="ranking-row">
@@ -2731,8 +2731,8 @@
                 <div class="bar-track"><div class="bar-fill" style="width:${Math.max(3, (row.score / maxScore) * 100)}%; background:${row.player.color}"></div></div>
                 <div class="score-cell">
                   <div class="score-main">${formatNumber(row.score)} pts</div>
-                  <div>Leader : ${gapLeader === 0 ? "0" : "+" + formatNumber(gapLeader)}</div>
-                  <div>Devant : ${gapPrevious === 0 ? "0" : "+" + formatNumber(gapPrevious)}</div>
+                  <div>Écart vs 1ère place : ${gapLeader === 0 ? "0" : "+" + formatNumber(gapLeader)}</div>
+                  <div>Écart vs joueur précédent : ${gapPrevious === 0 ? "0" : "+" + formatNumber(gapPrevious)}</div>
                 </div>
               </article>
             `;
@@ -2922,10 +2922,10 @@
         <div class="panel">
           <h2 class="panel-title">Classement général par équipe <small>Moyenne cumulée</small></h2>
           <div class="ranking-list">
-            ${ranking.map((row) => {
+            ${ranking.map((row, index) => {
               const gapLeader = leader.score - row.score;
-              const previousDistinct = ranking.find((other) => other.score > row.score);
-              const gapPrevious = previousDistinct ? previousDistinct.score - row.score : 0;
+              const previousRow = ranking[index - 1];
+              const gapPrevious = previousRow ? previousRow.score - row.score : 0;
               const move = movementLabel(movement[row.team] || 0);
               return `
                 <article class="ranking-row">
@@ -2944,8 +2944,8 @@
                   <div class="bar-track"><div class="bar-fill" style="width:${Math.max(3, (row.score / maxScore) * 100)}%; background:${teamColor(row.team)}"></div></div>
                   <div class="score-cell">
                     <div class="score-main">${formatNumber(row.score)} pts</div>
-                    <div>Leader : ${gapLeader === 0 ? "0" : "+" + formatNumber(gapLeader)}</div>
-                    <div>Devant : ${gapPrevious === 0 ? "0" : "+" + formatNumber(gapPrevious)}</div>
+                    <div>Écart vs 1ère place : ${gapLeader === 0 ? "0" : "+" + formatNumber(gapLeader)}</div>
+                    <div>Écart vs joueur précédent : ${gapPrevious === 0 ? "0" : "+" + formatNumber(gapPrevious)}</div>
                   </div>
                 </article>
               `;
