@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="fr">
 <head>
   <meta charset="utf-8">
@@ -6,27 +6,59 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <title>Fantasy Giro 2026</title>
+  <title>Fantasy Tour de France 2026</title>
   <style>
+    @font-face {
+      font-family: "Galibier";
+      src: url("fonts/Galibier-Regular.otf") format("opentype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Galibier";
+      src: url("fonts/Galibier-Bold.otf") format("opentype");
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "Galibier Etroit";
+      src: url("fonts/Galibier-EtroitBold.otf") format("opentype");
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root {
-      --pink: #e83d8a;
-      --pink-dark: #b91c68;
-      --pink-soft: #fde7f1;
-      --cyclamen: #9b1b72;
-      --blue: #1368a8;
-      --blue-soft: #e5f2fb;
+      --yellow: #ffed00;
+      --yellow-dark: #c79a00;
+      --yellow-soft: #fff8b8;
+      --pink: var(--yellow);
+      --pink-dark: #6b5200;
+      --pink-soft: var(--yellow-soft);
+      --cyclamen: #e1007a;
+      --blue: #005baa;
+      --blue-soft: #e5f0ff;
+      --navy: #061b3a;
+      --navy-2: #00112b;
+      --sky: #00a3e0;
       --white: #ffffff;
-      --paper: #f7f4f0;
-      --ink: #121116;
-      --muted: #6f6870;
-      --line: #e8e0de;
-      --green: #258b66;
-      --green-soft: #e7f5ef;
+      --paper: #f3f6fb;
+      --ink: #071a35;
+      --muted: #66758c;
+      --line: #dbe4f0;
+      --green: #16805b;
+      --green-soft: #e5f7ee;
       --gold: #d39b2a;
-      --red: #c23939;
-      --red-soft: #fff1f1;
-      --shadow: 0 18px 48px rgba(39, 29, 36, 0.10);
+      --red: #d71920;
+      --red-soft: #fff0f0;
+      --shadow: 0 18px 48px rgba(6, 27, 58, 0.10);
       --radius: 8px;
+      --font-title: "Galibier Etroit", "Galibier", Arial, Helvetica, sans-serif;
+      --font-body: Arial, Helvetica, sans-serif;
     }
 
     * {
@@ -39,10 +71,11 @@
 
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: var(--font-body);
       color: var(--ink);
       background:
-        linear-gradient(180deg, rgba(232, 61, 138, 0.10), rgba(255, 255, 255, 0) 280px),
+        linear-gradient(135deg, rgba(255, 237, 0, 0.18), rgba(255, 255, 255, 0) 320px),
+        repeating-linear-gradient(135deg, rgba(0, 91, 170, 0.045) 0 2px, transparent 2px 28px),
         var(--paper);
       min-height: 100vh;
     }
@@ -74,9 +107,11 @@
       width: 100%;
       min-width: 0;
       padding: 22px 16px;
-      background: rgba(255, 255, 255, 0.92);
-      border-right: 1px solid var(--line);
-      backdrop-filter: blur(12px);
+      background:
+        linear-gradient(180deg, rgba(255, 237, 0, 0.14), rgba(255, 237, 0, 0) 210px),
+        linear-gradient(160deg, var(--navy), var(--navy-2));
+      border-right: 1px solid rgba(255, 255, 255, 0.12);
+      color: white;
       display: flex;
       flex-direction: column;
       gap: 18px;
@@ -85,24 +120,24 @@
 
     .brand {
       display: grid;
-      grid-template-columns: 58px 1fr;
+      grid-template-columns: 86px 1fr;
       align-items: center;
       gap: 12px;
       width: 100%;
       min-width: 0;
       min-height: 68px;
       padding: 8px 8px 14px;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
     }
 
     .brand-logo {
-      width: 58px;
-      height: 58px;
+      width: 86px;
+      height: 62px;
       object-fit: contain;
     }
 
     .brand-kicker {
-      color: var(--pink-dark);
+      color: var(--yellow);
       text-transform: uppercase;
       font-size: 11px;
       font-weight: 800;
@@ -111,9 +146,10 @@
     }
 
     .brand-title {
+      font-family: var(--font-title);
       font-weight: 900;
-      font-size: 19px;
-      line-height: 1.04;
+      font-size: 22px;
+      line-height: 0.94;
       overflow-wrap: anywhere;
     }
 
@@ -132,7 +168,7 @@
 
     .nav-section-title {
       padding: 5px 12px 0;
-      color: var(--pink-dark);
+      color: var(--yellow);
       font-size: 11px;
       font-weight: 900;
       text-transform: uppercase;
@@ -159,7 +195,7 @@
       width: 100%;
       min-height: 42px;
       padding: 10px 12px;
-      color: #383038;
+      color: rgba(255, 255, 255, 0.78);
       background: transparent;
       border-radius: var(--radius);
       text-align: left;
@@ -168,14 +204,15 @@
     }
 
     .nav-button:hover {
-      background: #f5eef1;
+      background: rgba(255, 255, 255, 0.10);
+      color: white;
       transform: translateX(2px);
     }
 
     .nav-button.active {
-      background: var(--pink);
-      color: white;
-      box-shadow: 0 12px 26px rgba(232, 61, 138, 0.24);
+      background: var(--yellow);
+      color: var(--navy);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
     }
 
     .nav-icon {
@@ -188,8 +225,8 @@
     .sidebar-footer {
       margin-top: auto;
       padding: 12px;
-      background: #fff8fb;
-      border: 1px solid #f2d5e1;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
       border-radius: var(--radius);
       display: grid;
       gap: 8px;
@@ -201,14 +238,14 @@
       justify-content: space-between;
       gap: 8px;
       font-size: 12px;
-      color: var(--muted);
+      color: rgba(255, 255, 255, 0.62);
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
 
     .footer-value {
-      color: var(--ink);
+      color: white;
       font-size: 15px;
       letter-spacing: 0;
       text-transform: none;
@@ -225,6 +262,12 @@
       align-items: flex-start;
       gap: 18px;
       margin-bottom: 26px;
+      padding: 18px 20px;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid var(--line);
+      border-left: 6px solid var(--yellow);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
     }
 
     .title-block {
@@ -236,7 +279,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      color: var(--pink-dark);
+      color: var(--blue);
       font-size: 12px;
       font-weight: 900;
       text-transform: uppercase;
@@ -247,15 +290,17 @@
       content: "";
       width: 30px;
       height: 3px;
-      background: var(--pink);
+      background: var(--yellow);
       border-radius: 99px;
     }
 
     h1 {
       margin: 0;
+      font-family: var(--font-title);
       font-size: clamp(30px, 4vw, 56px);
       line-height: 0.95;
       letter-spacing: 0;
+      text-transform: uppercase;
     }
 
     .subtitle {
@@ -295,8 +340,9 @@
       padding: 11px 12px;
       background: rgba(255, 255, 255, 0.78);
       border: 1px solid var(--line);
+      border-top: 4px solid var(--yellow);
       border-radius: var(--radius);
-      box-shadow: 0 10px 26px rgba(39, 29, 36, 0.06);
+      box-shadow: 0 10px 26px rgba(6, 27, 58, 0.06);
     }
 
     .history-label {
@@ -314,6 +360,75 @@
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+    }
+
+    .stage-ribbon {
+      display: grid;
+      grid-template-columns: repeat(22, minmax(34px, 1fr));
+      gap: 6px;
+      margin: -8px 0 22px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 26px rgba(6, 27, 58, 0.06);
+    }
+
+    .ribbon-stage {
+      min-width: 0;
+      min-height: 38px;
+      padding: 5px 4px;
+      border-radius: 7px;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--navy);
+      display: grid;
+      place-items: center;
+      gap: 2px;
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: 13px;
+      line-height: 1;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .ribbon-stage:hover {
+      transform: translateY(-1px);
+      border-color: var(--blue);
+    }
+
+    .ribbon-stage.complete {
+      background: var(--green-soft);
+      border-color: #b8e4d1;
+      color: var(--green);
+    }
+
+    .ribbon-stage.partial {
+      background: #fff4e1;
+      border-color: #f2d7a6;
+      color: #9f6610;
+    }
+
+    .ribbon-stage.cancelled {
+      background: var(--navy-2);
+      border-color: var(--navy-2);
+      color: white;
+    }
+
+    .ribbon-stage.active {
+      background: var(--yellow);
+      border-color: var(--yellow-dark);
+      color: var(--navy);
+      box-shadow: 0 0 0 2px rgba(255, 237, 0, 0.25);
+    }
+
+    .ribbon-stage small {
+      font-family: var(--font-body);
+      color: currentColor;
+      opacity: 0.72;
+      font-size: 9px;
+      font-weight: 900;
+      text-transform: uppercase;
     }
 
     @keyframes pageIn {
@@ -360,18 +475,20 @@
       gap: 18px;
       padding: 18px;
       background:
-        linear-gradient(135deg, rgba(232, 61, 138, 0.14), rgba(255, 255, 255, 0.86)),
+        linear-gradient(135deg, rgba(255, 237, 0, 0.28), rgba(255, 255, 255, 0.90)),
         white;
-      border: 1px solid #f2cdda;
+      border: 1px solid #eadb5a;
       border-radius: var(--radius);
       box-shadow: var(--shadow);
     }
 
     .editorial-title {
+      font-family: var(--font-title);
       font-size: 24px;
       font-weight: 900;
       line-height: 1;
       margin-bottom: 6px;
+      text-transform: uppercase;
     }
 
     .editorial-note {
@@ -385,7 +502,7 @@
       justify-items: end;
       gap: 4px;
       font-weight: 900;
-      color: var(--pink-dark);
+      color: var(--navy);
       text-align: right;
     }
 
@@ -397,6 +514,8 @@
       gap: 12px;
       font-size: 18px;
       line-height: 1.1;
+      font-family: var(--font-title);
+      text-transform: uppercase;
     }
 
     .panel-title small {
@@ -416,6 +535,7 @@
     .metric {
       background: white;
       border: 1px solid var(--line);
+      border-top: 4px solid var(--yellow);
       border-radius: var(--radius);
       padding: 14px;
       min-height: 92px;
@@ -433,6 +553,7 @@
     }
 
     .metric-value {
+      font-family: var(--font-title);
       font-size: 30px;
       font-weight: 900;
       line-height: 1;
@@ -458,6 +579,31 @@
       background: white;
       border: 1px solid var(--line);
       border-radius: var(--radius);
+      box-shadow: 0 8px 24px rgba(6, 27, 58, 0.05);
+    }
+
+    .general-ranking-row {
+      grid-template-columns: 58px minmax(180px, 0.72fr) minmax(130px, 0.86fr) minmax(390px, 1fr);
+      padding: 14px;
+      border-left: 5px solid var(--yellow);
+      background:
+        linear-gradient(90deg, rgba(255, 237, 0, 0.08), rgba(255, 255, 255, 0) 38%),
+        white;
+    }
+
+    .general-ranking-row .player-name {
+      font-size: 17px;
+    }
+
+    .general-ranking-row .score-cell {
+      padding: 9px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #f7fbff;
+    }
+
+    .general-ranking-row .score-main {
+      font-size: 28px;
     }
 
     .rank-badge {
@@ -467,7 +613,7 @@
       place-items: center;
       border-radius: 50%;
       color: white;
-      background: #302b2f;
+      background: var(--navy);
       font-weight: 900;
       position: relative;
       flex: 0 0 auto;
@@ -526,8 +672,8 @@
       min-height: 22px;
       padding: 4px 7px;
       border-radius: 99px;
-      background: #f4eff1;
-      color: #574e55;
+      background: #edf2f8;
+      color: var(--navy);
       font-size: 11px;
       font-weight: 900;
       text-transform: uppercase;
@@ -535,7 +681,7 @@
     }
 
     .tag.pink {
-      color: var(--pink-dark);
+      color: var(--navy);
       background: var(--pink-soft);
     }
 
@@ -556,7 +702,7 @@
 
     .bar-track {
       height: 14px;
-      background: #f0e8e6;
+      background: #e8edf5;
       border-radius: 99px;
       overflow: hidden;
       position: relative;
@@ -571,8 +717,10 @@
 
     .score-cell {
       display: grid;
-      justify-items: end;
-      gap: 8px;
+      grid-template-columns: auto minmax(168px, 0.9fr);
+      align-items: center;
+      justify-content: end;
+      gap: 10px;
       text-align: right;
       font-size: 12px;
       color: var(--muted);
@@ -580,17 +728,19 @@
     }
 
     .score-main {
-      color: var(--ink);
+      color: var(--navy);
+      font-family: var(--font-title);
       font-weight: 900;
-      font-size: 21px;
-      line-height: 1;
+      font-size: 24px;
+      line-height: 0.95;
+      white-space: nowrap;
     }
 
     .gap-list {
       display: grid;
-      gap: 3px;
+      gap: 5px;
       width: 100%;
-      min-width: 180px;
+      min-width: 168px;
     }
 
     .gap-item {
@@ -598,26 +748,47 @@
       grid-template-columns: minmax(0, 1fr) auto;
       align-items: center;
       gap: 8px;
-      padding: 4px 0;
-      border-radius: var(--radius);
-      background: transparent;
-      border: 0;
+      min-height: 28px;
+      padding: 5px 8px;
+      border-radius: 7px;
+      border: 1px solid transparent;
+    }
+
+    .gap-item.leader-gap {
+      background: rgba(255, 237, 0, 0.20);
+      border-color: rgba(199, 154, 0, 0.24);
+    }
+
+    .gap-item.previous-gap {
+      background: var(--blue-soft);
+      border-color: rgba(0, 91, 170, 0.16);
     }
 
     .gap-label {
       color: var(--muted);
-      font-size: 11px;
-      font-weight: 400;
-      text-transform: none;
-      letter-spacing: 0;
+      font-size: 9px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
       text-align: left;
       white-space: normal;
+      line-height: 1.05;
     }
 
     .gap-value {
-      color: #5f545b;
-      font-size: 12px;
-      font-weight: 400;
+      color: var(--navy);
+      font-family: var(--font-title);
+      font-size: 14px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .gap-item.leader-gap .gap-value {
+      color: #6b5200;
+    }
+
+    .gap-item.previous-gap .gap-value {
+      color: var(--blue);
     }
 
     .tie-pill {
@@ -642,8 +813,8 @@
       height: 24px;
       padding: 0 8px;
       border-radius: 99px;
-      background: #f0e8e6;
-      color: #53484f;
+      background: #e8edf5;
+      color: var(--navy);
       font-size: 12px;
       font-weight: 900;
     }
@@ -655,7 +826,7 @@
 
     .movement.down {
       background: #fff1f1;
-      color: #c23939;
+      color: var(--red);
     }
 
     .leader-strip {
@@ -665,10 +836,11 @@
       align-items: center;
       padding: 16px;
       background:
-        linear-gradient(135deg, rgba(232, 61, 138, 0.16), rgba(255, 255, 255, 0.86)),
+        linear-gradient(135deg, rgba(255, 237, 0, 0.22), rgba(255, 255, 255, 0.86)),
         white;
-      border: 1px solid #f2cdda;
+      border: 1px solid #eadb5a;
       border-radius: var(--radius);
+      box-shadow: var(--shadow);
     }
 
     .leader-strip img {
@@ -678,10 +850,12 @@
     }
 
     .leader-name {
+      font-family: var(--font-title);
       font-size: 28px;
       font-weight: 900;
       line-height: 1;
       margin-bottom: 8px;
+      text-transform: uppercase;
     }
 
     .leader-copy {
@@ -744,11 +918,44 @@
       stroke-width: 3;
       stroke-linecap: round;
       stroke-linejoin: round;
+      transition: opacity 160ms ease, stroke-width 160ms ease, filter 160ms ease;
     }
 
     .chart-point {
       stroke: white;
       stroke-width: 2;
+      transition: opacity 160ms ease, r 160ms ease;
+    }
+
+    .chart-series {
+      transition: opacity 160ms ease;
+    }
+
+    .chart-hit-line {
+      fill: none;
+      stroke: transparent;
+      stroke-width: 16;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      pointer-events: stroke;
+    }
+
+    .chart-svg.has-hover .chart-series {
+      opacity: 0.16;
+    }
+
+    .chart-svg.has-hover .chart-series.active {
+      opacity: 1;
+    }
+
+    .chart-svg.has-hover .chart-series.active .line-path {
+      stroke-width: 5;
+      filter: drop-shadow(0 3px 5px rgba(6, 27, 58, 0.20));
+    }
+
+    .chart-svg.has-hover .chart-series.active .chart-point {
+      r: 5.5;
+    }
     }
 
     .legend {
@@ -768,6 +975,18 @@
       border-radius: 99px;
       font-size: 12px;
       font-weight: 800;
+      transition: opacity 160ms ease, transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .legend.has-hover .legend-item {
+      opacity: 0.35;
+    }
+
+    .legend.has-hover .legend-item.active {
+      opacity: 1;
+      transform: translateY(-1px);
+      border-color: var(--yellow-dark);
+      background: var(--yellow-soft);
     }
 
     .filter-list {
@@ -794,186 +1013,6 @@
       accent-color: var(--pink);
     }
 
-    .jersey-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .jersey-grid.awards-v2 {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .jersey-card {
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 18px;
-      display: grid;
-      gap: 14px;
-      min-width: 0;
-    }
-
-    .jersey-head {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      min-width: 0;
-    }
-
-    .jersey-card img {
-      width: 54px;
-      height: 54px;
-      object-fit: contain;
-      flex: 0 0 auto;
-    }
-
-    .jersey-card.award-card {
-      background:
-        linear-gradient(135deg, rgba(232, 61, 138, 0.10), rgba(255, 255, 255, 0.72)),
-        white;
-    }
-
-    .award-hero {
-      display: grid;
-      grid-template-columns: 92px minmax(0, 1fr);
-      align-items: center;
-      gap: 16px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid #f1e9e7;
-    }
-
-    .award-hero img {
-      width: 92px;
-      height: 92px;
-    }
-
-    .award-score {
-      color: var(--pink-dark);
-      font-size: 18px;
-      font-weight: 900;
-      margin-top: 5px;
-    }
-
-    .jersey-title {
-      font-size: 12px;
-      color: var(--muted);
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-
-    .jersey-leader {
-      font-size: 20px;
-      font-weight: 900;
-      overflow-wrap: anywhere;
-    }
-
-    .mini-ranking {
-      display: grid;
-      gap: 7px;
-    }
-
-    .mini-row {
-      display: grid;
-      grid-template-columns: 28px minmax(0, 1fr) auto;
-      gap: 8px;
-      align-items: center;
-      padding: 7px 0;
-      border-top: 1px solid #f1e9e7;
-      font-size: 13px;
-    }
-
-    .mini-row.tied {
-      background: #fffaf0;
-      margin-left: -6px;
-      margin-right: -6px;
-      padding-left: 6px;
-      padding-right: 6px;
-      border-radius: var(--radius);
-    }
-
-    .mini-rank {
-      width: 24px;
-      height: 24px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      color: white;
-      background: #3e383c;
-      font-size: 12px;
-      font-weight: 900;
-    }
-
-    .mini-rank.gold {
-      background: linear-gradient(135deg, #f4c35b, #b97917);
-    }
-
-    .mini-rank.silver {
-      background: linear-gradient(135deg, #dedede, #8d969c);
-    }
-
-    .mini-rank.bronze {
-      background: linear-gradient(135deg, #d99b5f, #945228);
-    }
-
-    .mini-rank.tied {
-      box-shadow: 0 0 0 3px rgba(211, 155, 42, 0.18);
-    }
-
-    .mini-name {
-      font-weight: 900;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    .mini-score {
-      color: var(--muted);
-      font-weight: 900;
-    }
-
-    .record-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .record-card {
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 15px;
-    }
-
-    .record-title {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      margin: 0 0 12px;
-      font-size: 17px;
-    }
-
-    .medal-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      color: white;
-      background: var(--gold);
-      flex: 0 0 auto;
-    }
-
-    .medal-icon.blue {
-      background: var(--blue);
-    }
-
-    .medal-icon.dark {
-      background: #343036;
-    }
-
     .table-wrap {
       overflow: auto;
       border: 1px solid var(--line);
@@ -991,8 +1030,8 @@
     th,
     td {
       padding: 10px 10px;
-      border-bottom: 1px solid #efe7e5;
-      border-right: 1px solid #f3ecea;
+      border-bottom: 1px solid #dfe8f3;
+      border-right: 1px solid #edf2f8;
       vertical-align: middle;
       text-align: right;
       white-space: nowrap;
@@ -1003,8 +1042,8 @@
       position: sticky;
       top: 0;
       z-index: 2;
-      background: #fff9fb;
-      color: #5f545b;
+      background: #f7fbff;
+      color: var(--navy);
       font-size: 11px;
       font-weight: 900;
       letter-spacing: 0.05em;
@@ -1020,11 +1059,11 @@
       background: white;
       font-weight: 900;
       min-width: 160px;
-      box-shadow: 1px 0 0 #efe7e5;
+      box-shadow: 1px 0 0 #dfe8f3;
     }
 
     th:first-child {
-      background: #fff9fb;
+      background: #f7fbff;
       z-index: 4;
     }
 
@@ -1052,7 +1091,7 @@
       max-width: 100%;
       min-width: 0;
       min-height: 38px;
-      border: 1px solid #d9cecb;
+      border: 1px solid #c8d6e8;
       border-radius: var(--radius);
       background: white;
       padding: 8px 10px;
@@ -1063,7 +1102,7 @@
     .input:focus,
     .select:focus {
       border-color: var(--pink);
-      box-shadow: 0 0 0 3px rgba(232, 61, 138, 0.16);
+      box-shadow: 0 0 0 3px rgba(255, 237, 0, 0.22);
     }
 
 
@@ -1087,7 +1126,7 @@
       justify-content: space-between;
       align-items: flex-start;
       gap: 12px;
-      background: linear-gradient(135deg, rgba(232, 61, 138, 0.10), rgba(255, 255, 255, 0.78));
+      background: linear-gradient(135deg, rgba(255, 237, 0, 0.18), rgba(255, 255, 255, 0.78));
       border-bottom: 1px solid var(--line);
     }
 
@@ -1111,7 +1150,7 @@
       align-items: center;
       gap: 10px;
       padding: 10px 12px;
-      border-bottom: 1px solid #f1e9e7;
+      border-bottom: 1px solid #e5edf7;
     }
 
     .rider-row.abandoned {
@@ -1140,8 +1179,8 @@
       height: 42px;
       object-fit: contain;
       border-radius: 50%;
-      background: #fbf8f6;
-      border: 1px solid #eee3e1;
+      background: #f5f8fc;
+      border: 1px solid #dce6f2;
       flex: 0 0 auto;
     }
 
@@ -1172,14 +1211,14 @@
       border-radius: 99px;
       display: inline-grid;
       place-items: center;
-      background: #f1ecea;
-      color: #40383f;
+      background: #edf2f8;
+      color: var(--navy);
       font-size: 12px;
       font-weight: 900;
     }
 
     .count-pill.shared {
-      color: var(--pink-dark);
+      color: var(--navy);
       background: var(--pink-soft);
     }
 
@@ -1203,8 +1242,8 @@
     }
 
     .shared-card.shared-medium {
-      border-color: #f2cdda;
-      background: linear-gradient(135deg, rgba(232, 61, 138, 0.07), white 46%);
+      border-color: #eadb5a;
+      background: linear-gradient(135deg, rgba(255, 237, 0, 0.14), white 46%);
     }
 
     .shared-card.shared-high {
@@ -1259,6 +1298,112 @@
       margin: 8px 0;
     }
 
+    .change-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px;
+      display: grid;
+      gap: 9px;
+    }
+
+    .change-card.active {
+      border-color: #eadb5a;
+      background: linear-gradient(135deg, rgba(255, 237, 0, 0.16), white 52%);
+    }
+
+    .change-score {
+      font-size: 34px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--navy);
+    }
+
+    .change-table-rank {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: inline-grid;
+      place-items: center;
+      color: white;
+      background: var(--navy);
+      font-weight: 900;
+      font-family: var(--font-title);
+    }
+
+    .change-table-rank.gold {
+      background: linear-gradient(135deg, #f4c35b, #b97917);
+    }
+
+    .change-table-rank.silver {
+      background: linear-gradient(135deg, #dedede, #8d969c);
+    }
+
+    .change-table-rank.bronze {
+      background: linear-gradient(135deg, #d99b5f, #945228);
+    }
+
+    .change-history-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .change-event {
+      display: grid;
+      grid-template-columns: minmax(120px, 0.6fr) minmax(140px, 0.7fr) minmax(0, 1.4fr);
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .change-event-meta {
+      display: grid;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .change-event-date {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .change-event-riders {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .change-rider-pill {
+      display: grid;
+      grid-template-columns: 38px minmax(0, 1fr);
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+      padding: 7px 8px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #f7fbff;
+    }
+
+    .change-rider-pill.new {
+      border-color: rgba(255, 237, 0, 0.72);
+      background: rgba(255, 237, 0, 0.12);
+    }
+
+    .change-arrow {
+      color: var(--blue);
+      font-family: var(--font-title);
+      font-weight: 900;
+    }
+
     .entry-shell {
       display: grid;
       grid-template-columns: 280px minmax(0, 1fr);
@@ -1277,7 +1422,7 @@
       border-radius: var(--radius);
       background: white;
       border: 1px solid var(--line);
-      color: #554c52;
+      color: var(--navy);
       font-weight: 900;
       display: flex;
       align-items: center;
@@ -1286,7 +1431,7 @@
     }
 
     .manager-button.active {
-      color: white;
+      color: var(--navy);
       background: var(--pink);
       border-color: var(--pink);
     }
@@ -1337,7 +1482,7 @@
       border-radius: var(--radius);
       background: white;
       border: 1px solid var(--line);
-      color: #554c52;
+      color: var(--navy);
       font-size: 13px;
       font-weight: 900;
       display: grid;
@@ -1347,12 +1492,12 @@
 
     .stage-button:hover {
       transform: translateY(-1px);
-      border-color: #d9c6ce;
+      border-color: #b7c7dc;
     }
 
     .stage-button.active {
       background: var(--pink);
-      color: white;
+      color: var(--navy);
       border-color: var(--pink);
     }
 
@@ -1363,9 +1508,9 @@
     }
 
     .stage-button.cancelled {
-      background: #2d2930;
+      background: var(--navy-2);
       color: white;
-      border-color: #2d2930;
+      border-color: var(--navy-2);
     }
 
     .stage-button.partial {
@@ -1378,7 +1523,7 @@
     .stage-button.active.cancelled,
     .stage-button.active.partial {
       background: var(--pink);
-      color: white;
+      color: var(--navy);
       border-color: var(--pink);
     }
 
@@ -1423,7 +1568,7 @@
       min-height: 34px;
       padding: 7px 10px;
       border-radius: 99px;
-      background: #f4eff1;
+      background: #edf2f8;
       color: #4e454c;
       font-size: 13px;
       font-weight: 900;
@@ -1441,16 +1586,16 @@
 
     .status-pill.error {
       background: #fff1f1;
-      color: #c23939;
+      color: var(--red);
     }
 
     .status-pill.local {
-      background: #f4eff1;
-      color: #514850;
+      background: #edf2f8;
+      color: var(--navy);
     }
 
     .status-pill.cancelled {
-      background: #2d2930;
+      background: var(--navy-2);
       color: white;
     }
 
@@ -1472,8 +1617,8 @@
     }
 
     .entry-notice.cancelled {
-      border-color: #2d2930;
-      background: #2d2930;
+      border-color: var(--navy-2);
+      background: var(--navy-2);
       color: white;
     }
 
@@ -1491,7 +1636,7 @@
       align-items: center;
       gap: 8px;
       font-weight: 900;
-      color: #50464d;
+      color: var(--navy);
       user-select: none;
     }
 
@@ -1535,11 +1680,11 @@
       display: grid;
       place-items: center;
       color: white;
-      background: #342f34;
+      background: var(--navy);
     }
 
     .icon-button.danger {
-      background: #c23939;
+      background: var(--red);
     }
 
     .action-row,
@@ -1569,18 +1714,18 @@
 
     .primary-btn {
       background: var(--pink);
-      color: white;
-      box-shadow: 0 12px 24px rgba(232, 61, 138, 0.22);
+      color: var(--navy);
+      box-shadow: 0 12px 24px rgba(255, 237, 0, 0.28);
     }
 
     .secondary-btn {
       background: white;
-      color: var(--ink);
+      color: var(--navy);
       border: 1px solid var(--line);
     }
 
     .danger-btn {
-      background: #c23939;
+      background: var(--red);
       color: white;
     }
 
@@ -1602,36 +1747,16 @@
     }
 
     .edit-lock {
-      border-color: #f2cdda;
-      background: linear-gradient(135deg, rgba(232, 61, 138, 0.10), rgba(255, 255, 255, 0.94));
+      border-color: #eadb5a;
+      background: linear-gradient(135deg, rgba(255, 237, 0, 0.18), rgba(255, 255, 255, 0.94));
       box-shadow: none;
-    }
-
-    .rules-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .rule-box {
-      border: 1px solid var(--line);
-      background: white;
-      border-radius: var(--radius);
-      padding: 14px;
-    }
-
-    .stage-checkboxes {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
     }
 
     .empty-state {
       padding: 24px;
       text-align: center;
       color: var(--muted);
-      border: 1px dashed #d6cbca;
+      border: 1px dashed #b9c7d8;
       border-radius: var(--radius);
       background: rgba(255, 255, 255, 0.72);
     }
@@ -1643,7 +1768,7 @@
       z-index: 100;
       max-width: 320px;
       padding: 12px 14px;
-      background: #282329;
+      background: var(--navy);
       color: white;
       border-radius: var(--radius);
       font-weight: 800;
@@ -1674,10 +1799,7 @@
     @media (max-width: 1180px) {
       .grid.two,
       .grid.three,
-      .jersey-grid,
-      .record-grid,
       .history-strip,
-      .jersey-grid.awards-v2,
       .detail-filter-panel,
       .entry-shell {
         grid-template-columns: 1fr;
@@ -1687,7 +1809,15 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
+      .stage-ribbon {
+        grid-template-columns: repeat(11, minmax(38px, 1fr));
+      }
+
       .ranking-row {
+        grid-template-columns: 44px minmax(0, 1fr);
+      }
+
+      .general-ranking-row {
         grid-template-columns: 44px minmax(0, 1fr);
       }
 
@@ -1697,8 +1827,22 @@
       }
 
       .score-cell {
+        grid-template-columns: auto minmax(150px, 1fr);
+        justify-content: start;
         justify-items: start;
         text-align: left;
+      }
+
+      .change-event {
+        grid-template-columns: 1fr;
+      }
+
+      .change-event-riders {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .change-arrow {
+        justify-self: start;
       }
     }
 
@@ -1786,6 +1930,10 @@
         grid-template-columns: repeat(4, minmax(0, 1fr));
       }
 
+      .stage-ribbon {
+        grid-template-columns: repeat(6, minmax(42px, 1fr));
+      }
+
       .settings-row {
         grid-template-columns: 1fr;
       }
@@ -1817,12 +1965,24 @@
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
+      .stage-ribbon {
+        grid-template-columns: repeat(4, minmax(42px, 1fr));
+      }
+
       .score-input-row {
         grid-template-columns: 1fr;
       }
 
       .score-input-row input {
         text-align: left;
+      }
+
+      .score-cell {
+        grid-template-columns: 1fr;
+      }
+
+      .gap-list {
+        min-width: 0;
       }
 
       .leader-strip {
@@ -1832,15 +1992,6 @@
       .leader-strip img {
         width: 64px;
         height: 64px;
-      }
-
-      .award-hero {
-        grid-template-columns: 70px minmax(0, 1fr);
-      }
-
-      .award-hero img {
-        width: 70px;
-        height: 70px;
       }
 
       .rider-row,
@@ -1860,10 +2011,10 @@
   <div class="app">
     <aside class="sidebar">
       <div class="brand">
-        <img class="brand-logo" src="Giro logo.png" alt="Logo Giro">
+        <img class="brand-logo" src="TDF Logo.png" alt="Logo Tour de France">
         <div>
           <div class="brand-kicker">Fantasy</div>
-          <div class="brand-title">Giro 2026</div>
+          <div class="brand-title">Tour de France 2026</div>
         </div>
       </div>
       <nav class="nav" aria-label="Navigation principale" id="nav"></nav>
@@ -1873,22 +2024,22 @@
     <main class="main">
       <header class="topbar">
         <div class="title-block">
-          <div class="eyebrow" id="pageEyebrow">Corsa Rosa</div>
+          <div class="eyebrow" id="pageEyebrow">Le Tour</div>
           <h1 id="pageTitle">Classement Général Individuel</h1>
           <p class="subtitle" id="pageSubtitle">Le classement en direct de la fantasy, avec les écarts au leader, les écarts à la place précédente et les mouvements depuis la dernière étape complète.</p>
         </div>
-        <img class="top-logo" src="Giro logo.png" alt="">
+        <img class="top-logo" src="TDF Logo Light.png" alt="">
       </header>
       <div class="history-strip" id="historyStrip"></div>
+      <div class="stage-ribbon" id="stageRibbon"></div>
 
       <section class="page active" id="page-general"></section>
       <section class="page" id="page-evolutions"></section>
       <section class="page" id="page-teams"></section>
-      <section class="page" id="page-awards"></section>
       <section class="page" id="page-details"></section>
       <section class="page" id="page-rider-overview"></section>
       <section class="page" id="page-rider-shared"></section>
-      <section class="page" id="page-rider-abandons"></section>
+      <section class="page" id="page-rider-changes"></section>
       <section class="page" id="page-entry"></section>
       <section class="page" id="page-rider-entry"></section>
       <section class="page" id="page-settings"></section>
@@ -1900,7 +2051,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     const STORAGE_KEY = "fantasy-giro-2026-v1";
-    const APP_VERSION = "2026-05-04-1555";
+    const APP_VERSION = "2026-06-11-1335";
     const SUPABASE_CONFIG = {
       url: "https://paxgisozkvofzmjztrwu.supabase.co",
       key: "sb_publishable_6HSHJ4TKGpSxvWhJUk7XXA_z1TW3Xrx",
@@ -1908,9 +2059,9 @@
       dashboardId: "giro-2026"
     };
     const PLAYER_COLORS = [
-      "#e83d8a", "#1368a8", "#258b66", "#d39b2a", "#7c3aed",
-      "#ef4444", "#0f766e", "#f97316", "#4f46e5", "#be123c",
-      "#0891b2", "#65a30d", "#a855f7", "#b45309", "#111827"
+      "#ffed00", "#005baa", "#16805b", "#d39b2a", "#7c3aed",
+      "#d71920", "#0f766e", "#f97316", "#4f46e5", "#be123c",
+      "#00a3e0", "#65a30d", "#a855f7", "#b45309", "#071a35"
     ];
 
     const NAV_SECTIONS = [
@@ -1920,7 +2071,6 @@
           { id: "general", label: "Classement Général Individuel", short: "Général", icon: "podium", title: "Classement Général Individuel", subtitle: "Le classement en direct de la fantasy, avec les écarts au leader, les écarts à la place précédente et les mouvements depuis la dernière étape complète." },
           { id: "evolutions", label: "Évolutions", short: "Évolutions", icon: "chart", title: "Évolutions", subtitle: "Deux trajectoires pour suivre la course : les places au général et le cumul de points, joueur par joueur." },
           { id: "teams", label: "Classement par équipe", short: "Équipes", icon: "team", title: "Classement par équipe", subtitle: "Les scores des équipes sont calculés avec la moyenne arrondie des joueurs rattachés à chaque équipe." },
-          { id: "awards", label: "Prix Sportifs", short: "Prix", icon: "trophy", title: "Prix Sportifs", subtitle: "Maillots Rose, Cyclamen, Bleu et Blanc, plus les records de victoires d’étapes, podiums et dernières places." },
           { id: "details", label: "Détails", short: "Détails", icon: "table", title: "Détails", subtitle: "Une vue tableur complète et une fiche joueur pour inspecter les points, rangs d’étapes, cumuls et places au général." }
         ]
       },
@@ -1928,21 +2078,21 @@
         title: "Suivi des Équipes",
         items: [
           { id: "rider-overview", label: "Récapitulatif des équipes", short: "Récap", icon: "grid", title: "Récapitulatif des équipes", subtitle: "Toutes les compositions fantasy en un seul écran, avec maillots d’équipes, coureurs communs et abandons visibles immédiatement." },
-          { id: "rider-shared", label: "Coureurs en commun", short: "Communs", icon: "link", title: "Coureurs en commun", subtitle: "Les coureurs sélectionnés par plusieurs joueurs, avec les managers concernés et l’impact des abandons." },
-          { id: "rider-abandons", label: "Abandons", short: "Abandons", icon: "alert", title: "Abandons par équipe", subtitle: "L’impact des coureurs abandonnés sur les compositions fantasy, joueur par joueur." }
+          { id: "rider-shared", label: "Coureurs en commun", short: "Communs", icon: "link", title: "Coureurs en commun", subtitle: "Les coureurs sélectionnés par plusieurs joueurs, avec les managers concernés." },
+          { id: "rider-changes", label: "Changements", short: "Changements", icon: "swap", title: "Changements", subtitle: "Le suivi des changements de coureurs effectués dans chaque composition fantasy." }
         ]
       },
       {
         title: "Saisie",
         items: [
           { id: "entry", label: "Saisie des points par étape", short: "Points étapes", icon: "edit", title: "Saisie des points par étape", subtitle: "Un écran par étape, avec suivi du nombre de joueurs saisis et statut visuel des étapes complètes, partielles ou annulées." },
-          { id: "rider-entry", label: "Saisie des équipes et abandons", short: "Équipes & abandons", icon: "edit", title: "Saisie des équipes et abandons", subtitle: "Saisie des 9 coureurs de chaque joueur et gestion centralisée des abandons, appliquée automatiquement à toutes les compositions." }
+          { id: "rider-entry", label: "Saisie des équipes et abandons", short: "Équipes & abandons", icon: "edit", title: "Saisie des équipes et abandons", subtitle: "Saisie des 8 coureurs de chaque joueur, suivi des changements et gestion centralisée des abandons." }
         ]
       },
       {
         title: "",
         items: [
-          { id: "settings", label: "Paramètres", short: "Paramètres", icon: "settings", title: "Paramètres", subtitle: "Gestion des joueurs, éligibilité Maillot Blanc, règles des maillots, export/import JSON et remise à zéro." }
+          { id: "settings", label: "Paramètres", short: "Paramètres", icon: "settings", title: "Paramètres", subtitle: "Gestion des joueurs, éligibilité Maillot Blanc, export/import JSON et remise à zéro." }
         ]
       }
     ];
@@ -2023,6 +2173,7 @@
 
     const RIDERS = parseStartlist(PDF_STARTLIST_RAW);
     const RIDERS_ALPHABETICAL = [...RIDERS].sort((a, b) => a.sortName.localeCompare(b.sortName, "fr"));
+    const RIDERS_PER_FANTASY_TEAM = 8;
 
 
     const state = {
@@ -2063,6 +2214,7 @@
         reset: '<path d="M5 12a7 7 0 1 0 2-5"></path><path d="M5 5v6h6"></path>',
         grid: '<path d="M4 4h7v7H4z"></path><path d="M13 4h7v7h-7z"></path><path d="M4 13h7v7H4z"></path><path d="M13 13h7v7h-7z"></path>',
         link: '<path d="M10 13a5 5 0 0 0 7.1 0l1.4-1.4a5 5 0 0 0-7.1-7.1L10.5 5"></path><path d="M14 11a5 5 0 0 0-7.1 0l-1.4 1.4a5 5 0 0 0 7.1 7.1l.9-.9"></path>',
+        swap: '<path d="M7 7h11"></path><path d="m15 4 3 3-3 3"></path><path d="M17 17H6"></path><path d="m9 14-3 3 3 3"></path>',
         alert: '<path d="M12 9v4"></path><path d="M12 17h.01"></path><path d="m10.3 4.3-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-2.7l-8-14a2 2 0 0 0-3.4 0Z"></path>',
         save: '<path d="M5 4h12l2 2v14H5z"></path><path d="M8 4v6h8V4"></path><path d="M8 20v-6h8v6"></path>'
       };
@@ -2103,7 +2255,7 @@
         Damien: { base: 348, sprint: 30, climb: 30, final: 1030 },
         Robin: { base: 334, sprint: 12, climb: 48, final: 1080 },
         Mathis: { base: 326, sprint: 26, climb: 37, final: 910 },
-        Émilien: { base: 318, sprint: 20, climb: 22, final: 880 },
+        "Émilien": { base: 318, sprint: 20, climb: 22, final: 880 },
         Sacha: { base: 351, sprint: 44, climb: 12, final: 940 },
         Agathe: { base: 329, sprint: 24, climb: 32, final: 1010 },
         Lucie: { base: 336, sprint: 38, climb: 19, final: 950 },
@@ -2135,7 +2287,7 @@
 
       return {
         version: 1,
-        raceName: "Fantasy Giro 2026",
+        raceName: "Fantasy Tour de France 2026",
         players,
         stages,
         rules: {
@@ -2239,7 +2391,7 @@
       const surname = [];
       const given = [];
       for (const part of parts) {
-        if (/^[A-ZÀ-ÖØ-Þ'’-]+$/.test(part) || smallWords.has(part)) surname.push(titleCase(part));
+        if (/^[\p{Lu}'\u2019-]+$/u.test(part) || smallWords.has(part)) surname.push(titleCase(part));
         else given.push(titleCase(part));
       }
       if (!given.length) return parts.map(titleCase).join(" ");
@@ -2249,8 +2401,8 @@
     function titleCase(value) {
       return value
         .toLowerCase()
-        .split(/([-'’])/)
-        .map((part) => part === "-" || part === "'" || part === "’" ? part : part.charAt(0).toUpperCase() + part.slice(1))
+        .split(/([-'\u2019])/)
+        .map((part) => part === "-" || part === "'" || part === "\u2019" ? part : part.charAt(0).toUpperCase() + part.slice(1))
         .join("");
     }
 
@@ -2273,7 +2425,9 @@
     function buildDefaultRiderTeams(players) {
       return {
         assignments: buildDemoRiderAssignments(players),
-        abandonedRiderIds: ["bib-128", "bib-165", "bib-187"].filter((id) => riderById(id))
+        abandonedRiderIds: ["bib-128", "bib-165", "bib-187"].filter((id) => riderById(id)),
+        changeCounts: Object.fromEntries(players.map((player) => [player.id, 0])),
+        changeHistory: []
       };
     }
 
@@ -2301,7 +2455,7 @@
       }
 
       let cursor = playerIndex * 11;
-      while (picks.length < 9 && riderIds.length) {
+      while (picks.length < RIDERS_PER_FANTASY_TEAM && riderIds.length) {
         const id = riderIds[cursor % riderIds.length];
         cursor += 13;
         if (used.has(id)) continue;
@@ -2321,6 +2475,30 @@
       };
     }
 
+    function normalizeChangeHistoryEntry(entry) {
+      const previous = entry.previous || {};
+      const next = entry.next || {};
+      const previousRider = riderById(previous.riderId);
+      const nextRider = riderById(next.riderId);
+      return {
+        id: entry.id || uniqueId("change", new Set()),
+        at: entry.at || new Date().toISOString(),
+        playerId: entry.playerId || "",
+        playerName: entry.playerName || "Joueur",
+        slot: Math.max(1, Math.round(Number(entry.slot) || 1)),
+        previous: {
+          riderId: previous.riderId || previousRider?.id || "",
+          name: previous.name || previousRider?.name || "Coureur",
+          teamId: previous.teamId || previousRider?.teamId || TEAMS[0].id
+        },
+        next: {
+          riderId: next.riderId || nextRider?.id || "",
+          name: next.name || nextRider?.name || "Coureur",
+          teamId: next.teamId || nextRider?.teamId || TEAMS[0].id
+        }
+      };
+    }
+
     function normalizeRiderTeams(value, players, fallback) {
       const safeValue = value && typeof value === "object" ? value : {};
       const sourceAssignments = safeValue.assignments && typeof safeValue.assignments === "object" ? safeValue.assignments : {};
@@ -2329,18 +2507,26 @@
         assignments: {},
         abandonedRiderIds: Array.isArray(safeValue.abandonedRiderIds)
           ? Array.from(new Set(safeValue.abandonedRiderIds.filter((id) => riderById(id))))
-          : clone(fallback?.abandonedRiderIds || [])
+          : clone(fallback?.abandonedRiderIds || []),
+        changeCounts: {},
+        changeHistory: []
       };
+      const playerIds = new Set(players.map((player) => player.id));
+      normalized.changeHistory = Array.isArray(safeValue.changeHistory)
+        ? safeValue.changeHistory.filter((entry) => entry && playerIds.has(entry.playerId)).map(normalizeChangeHistoryEntry)
+        : clone(fallback?.changeHistory || []);
 
       players.forEach((player, playerIndex) => {
         const source = Array.isArray(sourceAssignments[player.id]) ? sourceAssignments[player.id] : defaultAssignments[player.id];
-        normalized.assignments[player.id] = Array.from({ length: 9 }, (_, index) => {
+        normalized.assignments[player.id] = Array.from({ length: RIDERS_PER_FANTASY_TEAM }, (_, index) => {
           const entry = source?.[index] || {};
           const byId = riderById(entry.riderId);
           const byName = RIDERS.find((item) => normalizeRiderName(item.name) === normalizeRiderName(entry.name || ""));
           const selected = byId || byName || demoRiderEntriesForIndex(playerIndex)[index] || RIDERS[index % RIDERS.length];
           return entryFromRiderId(selected.riderId || selected.id);
         });
+        const rawCount = safeValue.changeCounts?.[player.id] ?? fallback?.changeCounts?.[player.id] ?? 0;
+        normalized.changeCounts[player.id] = Math.max(0, Math.round(Number(rawCount) || 0));
       });
 
       return normalized;
@@ -2414,6 +2600,88 @@
 
     function abandonedRiderGroups() {
       return riderGroups().filter((group) => group.abandoned);
+    }
+
+    function riderChangeCounts() {
+      return state.data.riderTeams?.changeCounts || {};
+    }
+
+    function riderChangeCount(playerId) {
+      return Math.max(0, Math.round(Number(riderChangeCounts()[playerId]) || 0));
+    }
+
+    function riderChangeRows() {
+      const rows = state.data.players.map((player) => ({
+        player,
+        count: riderChangeCount(player.id)
+      })).sort((a, b) => {
+        if (b.count !== a.count) return b.count - a.count;
+        return a.player.name.localeCompare(b.player.name, "fr");
+      });
+      rows.forEach((row) => {
+        row.rank = 1 + rows.filter((other) => other.count > row.count).length;
+      });
+      return rows;
+    }
+
+    function totalRiderChanges() {
+      return state.data.players.reduce((sum, player) => sum + riderChangeCount(player.id), 0);
+    }
+
+    function countCompositionChanges(previousEntries, nextEntries) {
+      const length = Math.max(previousEntries?.length || 0, nextEntries?.length || 0);
+      let changes = 0;
+      for (let index = 0; index < length; index += 1) {
+        const previousId = riderFromEntry(previousEntries?.[index]).riderId;
+        const nextId = riderFromEntry(nextEntries?.[index]).riderId;
+        if (previousId !== nextId) changes += 1;
+      }
+      return changes;
+    }
+
+    function compositionChangeRecords(player, previousEntries, nextEntries) {
+      const now = new Date().toISOString();
+      const length = Math.max(previousEntries?.length || 0, nextEntries?.length || 0);
+      const records = [];
+      for (let index = 0; index < length; index += 1) {
+        const previous = riderFromEntry(previousEntries?.[index]);
+        const next = riderFromEntry(nextEntries?.[index]);
+        if (previous.riderId === next.riderId) continue;
+        records.push({
+          id: player.id + "-change-" + Date.now() + "-" + index,
+          at: now,
+          playerId: player.id,
+          playerName: player.name,
+          slot: index + 1,
+          previous: {
+            riderId: previous.riderId,
+            name: previous.name,
+            teamId: previous.teamId
+          },
+          next: {
+            riderId: next.riderId,
+            name: next.name,
+            teamId: next.teamId
+          }
+        });
+      }
+      return records;
+    }
+
+    function riderChangeHistory() {
+      return Array.isArray(state.data.riderTeams?.changeHistory) ? state.data.riderTeams.changeHistory : [];
+    }
+
+    function riderChangeHistoryRows() {
+      return riderChangeHistory().map((entry) => {
+        const player = getPlayer(entry.playerId);
+        return {
+          ...entry,
+          player: player || { id: entry.playerId, name: entry.playerName || "Joueur", team: "", color: "#071a35" },
+          previousTeam: teamById(entry.previous?.teamId),
+          nextTeam: teamById(entry.next?.teamId)
+        };
+      }).sort((a, b) => new Date(b.at).getTime() - new Date(a.at).getTime());
     }
 
     function saveData(options = {}) {
@@ -2761,22 +3029,14 @@
       return count > 1 ? `<span class="tie-pill">Égalité x${count}</span>` : "";
     }
 
-    function miniRankClass(row, ranking) {
-      return [rankBadgeClass(row.rank), tieCount(row, ranking) > 1 ? "tied" : ""].filter(Boolean).join(" ");
-    }
-
-    function miniRowClass(row, ranking) {
-      return tieCount(row, ranking) > 1 ? "tied" : "";
-    }
-
     function renderGapList(gapLeader, gapPrevious) {
       return `
         <div class="gap-list">
-          <div class="gap-item">
+          <div class="gap-item leader-gap">
             <span class="gap-label">Écart vs 1ère place</span>
             <span class="gap-value">${gapLeader === 0 ? "0" : "+" + formatNumber(gapLeader)}</span>
           </div>
-          <div class="gap-item">
+          <div class="gap-item previous-gap">
             <span class="gap-label">Écart vs joueur précédent</span>
             <span class="gap-value">${gapPrevious === 0 ? "0" : "+" + formatNumber(gapPrevious)}</span>
           </div>
@@ -2818,11 +3078,11 @@
 
     function teamColor(team) {
       const colors = {
-        SALES: "#e83d8a",
-        "ÉTUDES": "#1368a8",
-        PRODUIT: "#258b66"
+        SALES: "#ffed00",
+        "ÉTUDES": "#005baa",
+        PRODUIT: "#16805b"
       };
-      return colors[team] || "#343036";
+      return colors[team] || "#071a35";
     }
 
     function teamMembers(team) {
@@ -2907,16 +3167,16 @@
       renderHeader();
       renderSidebarSummary();
       renderHistoryStrip();
+      renderStageRibbon();
       document.querySelectorAll(".page").forEach((page) => page.classList.toggle("active", page.id === "page-" + state.activePage));
       const renderers = {
         general: renderGeneral,
         evolutions: renderEvolutions,
         teams: renderTeams,
-        awards: renderAwards,
         details: renderDetails,
         "rider-overview": renderRiderOverview,
         "rider-shared": renderRiderShared,
-        "rider-abandons": renderRiderAbandons,
+        "rider-changes": renderRiderChanges,
         entry: renderEntry,
         "rider-entry": renderRiderEntry,
         settings: renderSettings
@@ -2950,7 +3210,7 @@
 
     function renderHeader() {
       const item = NAV_ITEMS.find((navItem) => navItem.id === state.activePage) || NAV_ITEMS[0];
-      document.getElementById("pageEyebrow").textContent = "Corsa Rosa";
+      document.getElementById("pageEyebrow").textContent = "Le Tour";
       document.getElementById("pageTitle").textContent = item.title;
       document.getElementById("pageSubtitle").textContent = item.subtitle;
     }
@@ -2979,9 +3239,32 @@
       target.innerHTML = `
         ${historyItem("Dernière étape validée", lastComplete ? lastComplete.name : "Aucune")}
         ${historyItem("Prochaine saisie", nextIncomplete ? nextIncomplete.name : "Course complète")}
-        ${historyItem("Leader actuel", leader ? leader.player.name + " · " + formatNumber(leader.score) + " pts" : "-")}
+        ${historyItem("Leader actuel", leader ? leader.player.name : "-")}
         ${historyItem("Dernière mise à jour", formatUpdatedAt(state.data.updatedAt))}
       `;
+    }
+
+    function renderStageRibbon() {
+      const target = document.getElementById("stageRibbon");
+      if (!target) return;
+      target.innerHTML = state.data.stages.map((stage) => {
+        const completion = stageCompletion(stage);
+        const label = shortStageLabel(stage.name);
+        const statusLabel = stage.cancelled ? "annulée" : completion.status === "complete" ? "ok" : completion.status === "partial" ? completion.count + "/" + completion.total : "vide";
+        return `
+          <button class="ribbon-stage ${completion.status} ${stage.id === state.selectedStageId ? "active" : ""}" type="button" data-ribbon-stage="${stage.id}" title="${escapeHtml(stage.name)} - ${escapeHtml(statusLabel)}">
+            <span>${escapeHtml(label)}</span>
+            <small>${escapeHtml(statusLabel)}</small>
+          </button>
+        `;
+      }).join("");
+      target.querySelectorAll("[data-ribbon-stage]").forEach((button) => {
+        button.addEventListener("click", () => {
+          state.selectedStageId = button.dataset.ribbonStage;
+          state.activePage = "entry";
+          renderApp();
+        });
+      });
     }
 
     function historyItem(label, value) {
@@ -3024,10 +3307,10 @@
         ${renderRaceBrief(ranking, movement)}
         ${leader ? `
           <div class="leader-strip">
-            <img src="Maillot Rose.png" alt="Maillot Rose">
+            <img src="Maillot Jaune.png" alt="Maillot Jaune">
             <div>
               <div class="leader-name">${escapeHtml(leader.player.name)}</div>
-              <p class="leader-copy">Porteur virtuel du Maillot Rose avec ${formatNumber(leader.score)} points au classement général.</p>
+              <p class="leader-copy">Porteur virtuel du Maillot Jaune avec ${formatNumber(leader.score)} points au classement général.</p>
             </div>
           </div>
         ` : ""}
@@ -3039,7 +3322,7 @@
             const gapPrevious = previousRow ? previousRow.score - row.score : 0;
             const move = movementLabel(movement[row.player.id] || 0);
             return `
-              <article class="ranking-row">
+              <article class="ranking-row general-ranking-row">
                 <div class="rank-badge ${rankBadgeClass(row.rank)}">${row.rank}</div>
                 <div class="player-cell">
                   <div class="player-name">
@@ -3125,6 +3408,7 @@
           renderEvolutions();
         });
       });
+      bindChartHover(page);
     }
 
     function ensureSelectedPlayers() {
@@ -3172,13 +3456,17 @@
       const paths = entities.map((entity) => {
         const key = entity.id || entity.team;
         const coords = series
-          .map((point, index) => ({ value: point.values[key], x: xFor(index), y: yFor(point.values[key]) }))
+          .map((point, index) => ({ value: point.values[key], stage: point.stage, x: xFor(index), y: yFor(point.values[key]) }))
           .filter((coord) => Number.isFinite(coord.value));
         const path = coords.map((coord, index) => (index === 0 ? "M" : "L") + coord.x.toFixed(1) + " " + coord.y.toFixed(1)).join(" ");
         const color = entity.color || teamColor(entity.team);
+        const label = entity.name || entity.team;
         return `
-          <path class="line-path" d="${path}" stroke="${color}"></path>
-          ${coords.map((coord) => `<circle class="chart-point" cx="${coord.x.toFixed(1)}" cy="${coord.y.toFixed(1)}" r="4" fill="${color}"><title>${escapeHtml(entity.name || entity.team)} - ${escapeHtml(series[coords.indexOf(coord)]?.stage || "")} : ${formatNumber(coord.value)}</title></circle>`).join("")}
+          <g class="chart-series" data-series-key="${escapeAttr(key)}">
+            <path class="line-path" d="${path}" stroke="${color}"></path>
+            <path class="chart-hit-line" d="${path}"></path>
+            ${coords.map((coord) => `<circle class="chart-point" cx="${coord.x.toFixed(1)}" cy="${coord.y.toFixed(1)}" r="4" fill="${color}"><title>${escapeHtml(label)} - ${escapeHtml(coord.stage)} : ${formatNumber(coord.value)}</title></circle>`).join("")}
+          </g>
         `;
       }).join("");
 
@@ -3221,13 +3509,33 @@
       return `
         <div class="legend">
           ${entities.map((entity) => `
-            <span class="legend-item">
+            <span class="legend-item" tabindex="0" data-series-key="${escapeAttr(entity.id || entity.team)}">
               <span class="color-dot" style="background:${entity.color || teamColor(entity.team)}"></span>
               ${escapeHtml(entity.name || entity.team)}
             </span>
           `).join("")}
         </div>
       `;
+    }
+
+    function bindChartHover(root = document) {
+      root.querySelectorAll(".wide-chart-panel").forEach((panel) => {
+        const svg = panel.querySelector(".chart-svg");
+        const legend = panel.querySelector(".legend");
+        if (!svg) return;
+        const setActive = (key) => {
+          svg.classList.toggle("has-hover", Boolean(key));
+          legend?.classList.toggle("has-hover", Boolean(key));
+          svg.querySelectorAll("[data-series-key]").forEach((item) => item.classList.toggle("active", item.dataset.seriesKey === key));
+          legend?.querySelectorAll("[data-series-key]").forEach((item) => item.classList.toggle("active", item.dataset.seriesKey === key));
+        };
+        panel.querySelectorAll("[data-series-key]").forEach((item) => {
+          item.addEventListener("mouseenter", () => setActive(item.dataset.seriesKey));
+          item.addEventListener("focus", () => setActive(item.dataset.seriesKey));
+          item.addEventListener("mouseleave", () => setActive(""));
+          item.addEventListener("blur", () => setActive(""));
+        });
+      });
     }
 
     function renderTeams() {
@@ -3289,6 +3597,7 @@
           </div>
         </div>
       `;
+      bindChartHover(page);
     }
 
     function renderTeamStageTable() {
@@ -3321,83 +3630,6 @@
       const members = teamMembers(team);
       if (!members.length) return 0;
       return Math.round(members.reduce((sum, player) => sum + scoreOf(stage, player.id), 0) / members.length);
-    }
-
-    function renderAwards() {
-      const page = document.getElementById("page-awards");
-      const overall = overallRanking();
-      const cyclamen = rankingForRule(state.data.rules.cyclamenStages);
-      const blue = rankingForRule(state.data.rules.blueStages);
-      const white = whiteRanking();
-      const records = raceStageRecords();
-
-      page.innerHTML = `
-        <div class="jersey-grid awards-v2">
-          ${renderJerseyCard("Maillot Rose", "Classement général", "Maillot Rose.png", overall)}
-          ${renderJerseyCard("Maillot Cyclamen", "Étapes " + state.data.rules.cyclamenStages.join(", "), "Maillot Cyclamen.png", cyclamen)}
-          ${renderJerseyCard("Maillot Bleu", "Étapes " + state.data.rules.blueStages.join(", "), "Maillot Bleu.png", blue)}
-          ${renderJerseyCard("Maillot Blanc", "Joueurs éligibles, total complet", "Maillot Blanc.png", white)}
-        </div>
-        <div class="record-grid">
-          ${renderRecordCard("Victoires d’étapes", "trophy", "wins", records)}
-          ${renderRecordCard("Podiums d’étapes", "medal", "podiums", records)}
-          ${renderRecordCard("Dernières places", "podium", "last", records)}
-        </div>
-      `;
-    }
-
-    function renderJerseyCard(title, subtitle, image, ranking) {
-      const rows = ranking.filter((row) => row.score !== 0);
-      const leader = rows[0];
-      return `
-        <article class="jersey-card award-card">
-          <div class="award-hero">
-            <img src="${image}" alt="${escapeHtml(title)}">
-            <div>
-              <div class="jersey-title">${escapeHtml(title)}</div>
-              <div class="jersey-leader">${leader ? escapeHtml(leader.player.name) : "-"}</div>
-              <div class="award-score">${leader ? formatNumber(leader.score) + " pts" : "Aucun score"}</div>
-              <div class="muted">${escapeHtml(subtitle)}</div>
-            </div>
-          </div>
-          <div class="mini-ranking">
-            ${rows.slice(0, 5).map((row) => `
-              <div class="mini-row ${miniRowClass(row, rows)}">
-                <span class="mini-rank ${miniRankClass(row, rows)}">${row.rank}</span>
-                <span class="mini-name">${escapeHtml(row.player.name)}</span>
-                <span class="mini-score">${formatNumber(row.score)}</span>
-              </div>
-            `).join("") || emptyState("Aucune donnée")}
-          </div>
-        </article>
-      `;
-    }
-
-    function renderRecordCard(title, iconName, key, records) {
-      const rows = state.data.players.map((player) => ({
-        player,
-        score: records[player.id]?.[key] || 0
-      })).filter((row) => row.score !== 0).sort((a, b) => {
-        if (b.score !== a.score) return b.score - a.score;
-        return a.player.name.localeCompare(b.player.name, "fr");
-      });
-      rows.forEach((row) => {
-        row.rank = 1 + rows.filter((other) => other.score > row.score).length;
-      });
-      return `
-        <article class="record-card">
-          <h2 class="record-title"><span class="medal-icon ${key === "podiums" ? "blue" : key === "last" ? "dark" : ""}">${icon(iconName)}</span>${escapeHtml(title)}</h2>
-          <div class="mini-ranking">
-            ${rows.slice(0, 8).map((row) => `
-              <div class="mini-row ${miniRowClass(row, rows)}">
-                <span class="mini-rank ${miniRankClass(row, rows)}">${row.rank}</span>
-                <span class="mini-name">${escapeHtml(row.player.name)}</span>
-                <span class="mini-score">${formatNumber(row.score)}</span>
-              </div>
-            `).join("") || emptyState("Aucune donnée")}
-          </div>
-        </article>
-      `;
     }
 
     function renderDetails() {
@@ -3632,7 +3864,7 @@
       const mostPicked = shared[0];
       return `
         <div class="metric-grid">
-          ${metric("Compositions", state.data.players.length, "9 coureurs par joueur")}
+          ${metric("Compositions", state.data.players.length, RIDERS_PER_FANTASY_TEAM + " coureurs par joueur")}
           ${metric("Coureurs uniques", uniqueCount, entries.length + " sélections au total")}
           ${metric("Coureurs communs", shared.length, mostPicked ? mostPicked.name + " x" + mostPicked.count : "Aucun doublon")}
           ${metric("Abandons", abandoned.length, riderAbandonmentImpactCount() + " équipe(s) touchée(s)")}
@@ -3653,6 +3885,7 @@
         if (!visibleRiders.length) return "";
         const abandonedCount = riders.filter((rider) => abandonedMap[rider.riderId]).length;
         const activeCount = Math.max(0, riders.length - abandonedCount);
+        const changeCount = riderChangeCount(player.id);
         visibleRiders.sort((a, b) => a.name.localeCompare(b.name, "fr"));
         return `
           <article class="manager-card">
@@ -3662,6 +3895,7 @@
                 <div class="tag-row">
                   <span class="tag green">${activeCount}/${riders.length} en course</span>
                   ${abandonedCount ? `<span class="tag red">${abandonedCount} abandon${abandonedCount > 1 ? "s" : ""}</span>` : ""}
+                  <span class="tag ${changeCount ? "pink" : ""}">${changeCount} changement${changeCount > 1 ? "s" : ""}</span>
                 </div>
               </div>
             </div>
@@ -3756,37 +3990,125 @@
       return "Duo";
     }
 
-    function renderRiderAbandons() {
-      const page = document.getElementById("page-rider-abandons");
-      const abandoned = abandonedRiderGroups();
-      const impactByPlayer = state.data.players.map((player) => {
-        const count = (state.data.riderTeams?.assignments?.[player.id] || []).map(riderFromEntry).filter((rider) => abandoned.some((group) => group.key === rider.riderId)).length;
-        return { player, count };
-      }).sort((a, b) => b.count - a.count || a.player.name.localeCompare(b.player.name, "fr"));
+    function renderRiderChanges() {
+      const page = document.getElementById("page-rider-changes");
+      const rows = riderChangeRows();
+      const total = totalRiderChanges();
+      const activeRows = rows.filter((row) => row.count > 0);
+      const leader = activeRows[0];
+      const zeroCount = rows.length - activeRows.length;
+      const average = rows.length ? Math.round(total / rows.length) : 0;
+      const historyRows = riderChangeHistoryRows();
+      const latest = historyRows[0];
       page.innerHTML = `
+        <div class="metric-grid">
+          ${metric("Total changements", total, "Depuis la dernière remise à zéro")}
+          ${metric("Joueurs concernés", activeRows.length, zeroCount + " joueur" + (zeroCount > 1 ? "s" : "") + " à 0")}
+          ${metric("Plus haut compteur", leader ? leader.player.name : "-", leader ? leader.count + " changement" + (leader.count > 1 ? "s" : "") : "Aucun changement")}
+          ${metric("Dernier changement", latest ? latest.player.name : "-", latest ? formatUpdatedAt(latest.at) : "Aucun historique")}
+        </div>
+        <div class="editorial-band">
+          <div>
+            <div class="editorial-title">Changements de coureurs</div>
+            <p class="editorial-note">Chaque case de coureur modifiée ajoute un changement au joueur concerné et alimente le journal détaillé depuis la dernière remise à zéro.</p>
+          </div>
+          <div class="editorial-kpi">
+            <span>${total}</span>
+            <span>changements</span>
+          </div>
+        </div>
         <div class="grid two">
           <div class="panel">
-            <h2 class="panel-title">Joueurs touchés <small>${riderAbandonmentImpactCount()} impacts</small></h2>
+            <h2 class="panel-title">Classement changements <small>${rows.length} joueurs</small></h2>
             <div class="abandon-grid">
-              ${impactByPlayer.map((row) => `
-                <article class="abandon-card ${row.count ? "danger" : ""}">
-                  <div class="manager-name"><span class="color-dot" style="background:${row.player.color}"></span>${escapeHtml(row.player.name)}</div>
-                  <div class="abandon-score">${row.count}</div>
-                  <div class="muted">${row.count ? "coureur(s) abandonné(s)" : "aucun abandon"}</div>
-                </article>
-              `).join("")}
+              ${rows.map(renderRiderChangeCard).join("")}
             </div>
           </div>
           <div class="panel">
-            <h2 class="panel-title">Coureurs abandonnés <small>${abandoned.length} coureurs</small></h2>
-            <div class="shared-grid">
-              ${abandoned.map((group) => renderRiderSharedCard(group)).join("") || emptyState("Aucun abandon renseigné.")}
-            </div>
+            <h2 class="panel-title">Détail <small>compteurs actuels</small></h2>
+            ${renderRiderChangeTable(rows)}
           </div>
         </div>
         <div class="panel">
-          <h2 class="panel-title">Détail des impacts <small>par joueur</small></h2>
-          ${renderRiderAbandonTable(abandoned)}
+          <h2 class="panel-title">Historique détaillé <small>${historyRows.length} changement${historyRows.length > 1 ? "s" : ""}</small></h2>
+          ${renderRiderChangeHistory(historyRows)}
+        </div>
+      `;
+    }
+
+    function renderRiderChangeCard(row) {
+      return `
+        <article class="change-card ${row.count ? "active" : ""}">
+          <div class="manager-name"><span class="color-dot" style="background:${row.player.color}"></span>${escapeHtml(row.player.name)}</div>
+          <div class="change-score">${row.count}</div>
+          <div class="tag-row">
+            <span class="tag ${row.count ? "pink" : ""}">${row.count ? "Compteur actif" : "Aucun changement"}</span>
+            ${row.player.team ? `<span class="tag">${escapeHtml(row.player.team)}</span>` : `<span class="tag">Sans équipe</span>`}
+          </div>
+        </article>
+      `;
+    }
+
+    function renderRiderChangeTable(rows) {
+      return `
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Rang</th>
+                <th>Joueur</th>
+                <th>Équipe</th>
+                <th>Changements</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rows.map((row) => `
+                <tr>
+                  <td><span class="change-table-rank ${rankBadgeClass(row.rank)}">${row.rank}</span></td>
+                  <td><span class="color-dot" style="background:${row.player.color}"></span> <strong>${escapeHtml(row.player.name)}</strong></td>
+                  <td>${row.player.team ? escapeHtml(row.player.team) : "Sans équipe"}</td>
+                  <td><strong>${row.count}</strong></td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    function renderRiderChangeHistory(rows) {
+      if (!rows.length) return emptyState("Aucun changement enregistré depuis la dernière remise à zéro.");
+      return `
+        <div class="change-history-list">
+          ${rows.slice(0, 80).map((row) => `
+            <article class="change-event">
+              <div class="change-event-meta">
+                <div class="change-event-date">${escapeHtml(formatUpdatedAt(row.at))}</div>
+                <div class="manager-name"><span class="color-dot" style="background:${row.player.color}"></span>${escapeHtml(row.player.name)}</div>
+                <span class="tag">Slot ${row.slot}</span>
+              </div>
+              <div class="tag-row">
+                ${row.player.team ? `<span class="tag">${escapeHtml(row.player.team)}</span>` : `<span class="tag">Sans équipe</span>`}
+              </div>
+              <div class="change-event-riders">
+                ${renderChangeRiderPill(row.previous, row.previousTeam, false)}
+                <span class="change-arrow">→</span>
+                ${renderChangeRiderPill(row.next, row.nextTeam, true)}
+              </div>
+            </article>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function renderChangeRiderPill(rider, team, isNew) {
+      return `
+        <div class="change-rider-pill ${isNew ? "new" : ""}">
+          <img class="jersey" src="${team.image}" alt="${escapeHtml(team.name)}">
+          <div class="rider-main">
+            <div class="rider-name">${escapeHtml(rider?.name || "-")}</div>
+            <div class="rider-team">${escapeHtml(team.name)}</div>
+          </div>
         </div>
       `;
     }
@@ -3794,40 +4116,6 @@
     function riderAbandonmentImpactCount() {
       const abandoned = new Set(abandonedRiderGroups().map((group) => group.key));
       return allRiderEntries().filter((entry) => abandoned.has(entry.key)).length;
-    }
-
-    function renderRiderAbandonTable(abandoned) {
-      if (!abandoned.length) return emptyState("Aucun abandon renseigné.");
-      const abandonedSet = new Set(abandoned.map((group) => group.key));
-      const rows = allRiderEntries().filter((entry) => abandonedSet.has(entry.key)).sort((a, b) => a.player.name.localeCompare(b.player.name, "fr"));
-      return `
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Joueur</th>
-                <th>Coureur</th>
-                <th>Équipe cycliste</th>
-                <th>Présent chez</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${rows.map((entry) => {
-                const group = abandoned.find((item) => item.key === entry.key);
-                const team = teamById(entry.rider.teamId);
-                return `
-                  <tr>
-                    <td><span class="color-dot" style="background:${entry.player.color}"></span> ${escapeHtml(entry.player.name)}</td>
-                    <td><strong>${escapeHtml(entry.rider.name)}</strong></td>
-                    <td><img class="jersey" src="${team.image}" alt=""> ${escapeHtml(team.name)}</td>
-                    <td>${group.count} joueur(s)</td>
-                  </tr>
-                `;
-              }).join("")}
-            </tbody>
-          </table>
-        </div>
-      `;
     }
 
     function renderRiderEntry() {
@@ -3848,15 +4136,16 @@
               ${state.data.players.map((player) => `
                 <button class="manager-button ${player.id === selected.id ? "active" : ""}" type="button" data-rider-entry-player="${player.id}">
                   <span><span class="color-dot" style="background:${player.color}"></span> ${escapeHtml(player.name)}</span>
-                  <span>${(assignments[player.id] || []).filter((entry) => riderFromEntry(entry).name.trim()).length}/9</span>
+                  <span>${(assignments[player.id] || []).filter((entry) => riderFromEntry(entry).name.trim()).length}/${RIDERS_PER_FANTASY_TEAM}</span>
                 </button>
               `).join("")}
             </div>
           </div>
           <div class="panel">
             <div class="toolbar">
-              <h2 class="panel-title" style="margin:0">${escapeHtml(selected.name)} <small>9 coureurs</small></h2>
+              <h2 class="panel-title" style="margin:0">${escapeHtml(selected.name)} <small>${RIDERS_PER_FANTASY_TEAM} coureurs</small></h2>
               <button class="primary-btn" type="button" id="saveRiderEntry" ${disabled}>${icon("save")}Enregistrer</button>
+              <button class="secondary-btn" type="button" id="resetChangeCounters" ${disabled}>${icon("reset")}Réinitialiser compteurs</button>
               <button class="secondary-btn" type="button" id="resetRiderDemo" ${disabled}>${icon("reset")}Restaurer démo coureurs</button>
             </div>
             <div class="entry-grid">
@@ -3870,7 +4159,7 @@
                     ${renderRiderOptions(rider.riderId)}
                   </select>
                   <div class="entry-team-preview" id="entryTeam-${index}">${escapeHtml(team.name)}</div>
-                  <span class="tag ${rider.abandoned ? "red" : "green"}">${rider.abandoned ? "Abandon" : "En course"}</span>
+                  <span class="tag ${rider.abandoned ? "red" : "green"}" id="entryStatus-${index}">${rider.abandoned ? "Abandon" : "En course"}</span>
                 </div>
               `}).join("")}
             </div>
@@ -3903,11 +4192,19 @@
           const team = teamById(rider.teamId);
           const img = document.getElementById("entryJersey-" + select.dataset.riderId);
           const label = document.getElementById("entryTeam-" + select.dataset.riderId);
+          const status = document.getElementById("entryStatus-" + select.dataset.riderId);
           if (img) img.src = team.image;
           if (label) label.textContent = team.name;
+          if (status) {
+            const abandoned = isRiderAbandoned(rider.id);
+            status.classList.toggle("red", abandoned);
+            status.classList.toggle("green", !abandoned);
+            status.textContent = abandoned ? "Abandon" : "En course";
+          }
         });
       });
       document.getElementById("saveRiderEntry")?.addEventListener("click", saveRiderEntry);
+      document.getElementById("resetChangeCounters")?.addEventListener("click", resetRiderChangeCounters);
       document.getElementById("resetRiderDemo")?.addEventListener("click", resetRiderDemo);
       document.getElementById("addAbandon")?.addEventListener("click", addGlobalAbandon);
       page.querySelectorAll("[data-remove-abandon]").forEach((button) => button.addEventListener("click", () => removeGlobalAbandon(button.dataset.removeAbandon)));
@@ -3923,9 +4220,29 @@
     function saveRiderEntry() {
       if (!requireEditor()) return;
       const rows = Array.from(document.querySelectorAll("#page-rider-entry .entry-row"));
-      state.data.riderTeams.assignments[state.selectedRiderPlayerId] = rows.map((row) => entryFromRiderId(row.querySelector("[data-rider-id]").value));
+      const playerId = state.selectedRiderPlayerId;
+      const player = riderPlayerById(playerId);
+      const previousEntries = state.data.riderTeams.assignments[playerId] || [];
+      const nextEntries = rows.map((row) => entryFromRiderId(row.querySelector("[data-rider-id]").value));
+      const records = compositionChangeRecords(player, previousEntries, nextEntries);
+      const changes = records.length;
+      state.data.riderTeams.assignments[playerId] = nextEntries;
+      if (!state.data.riderTeams.changeCounts) state.data.riderTeams.changeCounts = {};
+      if (changes > 0) state.data.riderTeams.changeCounts[playerId] = riderChangeCount(playerId) + changes;
+      if (!state.data.riderTeams.changeHistory) state.data.riderTeams.changeHistory = [];
+      if (records.length) state.data.riderTeams.changeHistory.unshift(...records);
       saveData();
-      showToast("Composition enregistrée.");
+      showToast(changes > 0 ? "Composition enregistrée : +" + changes + " changement" + (changes > 1 ? "s" : "") + "." : "Composition enregistrée sans changement.");
+      renderApp();
+    }
+
+    function resetRiderChangeCounters() {
+      if (!requireEditor()) return;
+      if (!confirm("Réinitialiser tous les compteurs de changements ?")) return;
+      state.data.riderTeams.changeCounts = Object.fromEntries(state.data.players.map((player) => [player.id, 0]));
+      state.data.riderTeams.changeHistory = [];
+      saveData();
+      showToast("Compteurs et historique des changements réinitialisés.");
       renderApp();
     }
 
@@ -4081,7 +4398,7 @@
         return `
           <div class="entry-notice done">
             <div class="entry-notice-title">Étape complète</div>
-            <div class="entry-notice-copy">Tous les joueurs sont saisis : cette étape est intégrée aux classements, graphiques, prix et records.</div>
+            <div class="entry-notice-copy">Tous les joueurs sont saisis : cette étape est intégrée aux classements et graphiques.</div>
           </div>
         `;
       }
@@ -4089,7 +4406,7 @@
       return `
         <div class="entry-notice">
           <div class="entry-notice-title">Étape incomplète</div>
-          <div class="entry-notice-copy">Il manque ${missing} joueur${missing > 1 ? "s" : ""}. Cette étape est ignorée dans les classements, graphiques, prix et records tant qu’elle n’est pas complète.</div>
+          <div class="entry-notice-copy">Il manque ${missing} joueur${missing > 1 ? "s" : ""}. Cette étape est ignorée dans les classements et graphiques tant qu’elle n’est pas complète.</div>
         </div>
       `;
     }
@@ -4117,7 +4434,7 @@
       const disabled = editorDisabledAttr();
       const importLabelClass = isEditor() ? "" : " disabled-label";
       page.innerHTML = `
-        ${renderEditorNotice("modifier les joueurs, les règles ou les données")}
+        ${renderEditorNotice("modifier les joueurs ou les données")}
         <div class="grid two">
           <div class="panel">
             <h2 class="panel-title">Joueurs <small>Ajout, modification, suppression</small></h2>
@@ -4157,13 +4474,6 @@
             <p class="subtitle" style="margin-top:14px">Les données sont sauvegardées dans Supabase quand tu es connecté. Une copie locale reste dans ce navigateur pour servir de cache et de secours.</p>
           </div>
         </div>
-        <div class="panel">
-          <h2 class="panel-title">Règles des maillots <small>Étapes comptabilisées</small></h2>
-          <div class="rules-grid">
-            ${renderRuleBox("Maillot Cyclamen", "cyclamenStages", "Maillot Cyclamen.png")}
-            ${renderRuleBox("Maillot Bleu", "blueStages", "Maillot Bleu.png")}
-          </div>
-        </div>
       `;
 
       page.querySelectorAll("[data-player-name]").forEach((input) => input.addEventListener("change", () => updatePlayer(input.dataset.playerName, { name: input.value.trim() || "Joueur" })));
@@ -4177,20 +4487,6 @@
       document.getElementById("restoreDemo")?.addEventListener("click", restoreDemo);
       document.getElementById("emptyScores")?.addEventListener("click", emptyScores);
       bindCloudPanelEvents();
-      page.querySelectorAll("[data-rule-stage]").forEach((input) => {
-        input.disabled = !isEditor();
-        input.addEventListener("change", () => {
-          if (!requireEditor()) return;
-          const key = input.dataset.ruleKey;
-          const number = Number(input.dataset.ruleStage);
-          const set = new Set(state.data.rules[key]);
-          if (input.checked) set.add(number);
-          else set.delete(number);
-          state.data.rules[key] = Array.from(set).sort((a, b) => a - b);
-          saveData();
-          renderSettings();
-        });
-      });
     }
 
     function renderCloudPanel() {
@@ -4359,29 +4655,6 @@
       return state.supabaseUser ? "Connecté" : "Local";
     }
 
-    function renderRuleBox(title, key, image) {
-      const selected = new Set(state.data.rules[key]);
-      return `
-        <div class="rule-box">
-          <div class="jersey-head">
-            <img src="${image}" alt="${escapeHtml(title)}" style="width:48px;height:48px;object-fit:contain">
-            <div>
-              <div class="jersey-title">${escapeHtml(title)}</div>
-              <div class="muted">${selected.size} étapes sélectionnées</div>
-            </div>
-          </div>
-          <div class="stage-checkboxes">
-            ${Array.from({ length: 21 }, (_, index) => index + 1).map((number) => `
-              <label class="check-pill">
-                <input type="checkbox" data-rule-key="${key}" data-rule-stage="${number}" ${selected.has(number) ? "checked" : ""}>
-                E${number}
-              </label>
-            `).join("")}
-          </div>
-        </div>
-      `;
-    }
-
     function updatePlayer(playerId, patch) {
       if (!requireEditor()) return;
       const player = getPlayer(playerId);
@@ -4415,6 +4688,8 @@
       if (!state.data.riderTeams) state.data.riderTeams = buildDefaultRiderTeams(state.data.players);
       if (!state.data.riderTeams.assignments) state.data.riderTeams.assignments = {};
       state.data.riderTeams.assignments[id] = demoRiderEntriesForIndex(state.data.players.length - 1);
+      if (!state.data.riderTeams.changeCounts) state.data.riderTeams.changeCounts = {};
+      state.data.riderTeams.changeCounts[id] = 0;
       state.selectedPlayers.add(id);
       saveData();
       showToast("Joueur ajouté.");
@@ -4433,6 +4708,8 @@
       state.data.players = state.data.players.filter((item) => item.id !== playerId);
       for (const stage of state.data.stages) delete stage.scores[playerId];
       if (state.data.riderTeams?.assignments) delete state.data.riderTeams.assignments[playerId];
+      if (state.data.riderTeams?.changeCounts) delete state.data.riderTeams.changeCounts[playerId];
+      if (state.data.riderTeams?.changeHistory) state.data.riderTeams.changeHistory = state.data.riderTeams.changeHistory.filter((entry) => entry.playerId !== playerId);
       state.selectedPlayers.delete(playerId);
       if (state.selectedDetailPlayerId === playerId) state.selectedDetailPlayerId = state.data.players[0]?.id || null;
       if (state.selectedRiderPlayerId === playerId) state.selectedRiderPlayerId = state.data.players[0]?.id || null;
@@ -4495,7 +4772,7 @@
 
     function emptyScores() {
       if (!requireEditor()) return;
-      if (!confirm("Vider tous les scores et conserver les joueurs/règles ?")) return;
+      if (!confirm("Vider tous les scores et conserver les joueurs ?")) return;
       for (const stage of state.data.stages) {
         stage.cancelled = false;
         for (const player of state.data.players) stage.scores[player.id] = null;
@@ -4544,3 +4821,4 @@
   </script>
 </body>
 </html>
+
