@@ -371,7 +371,7 @@
 
     .stage-ribbon {
       display: grid;
-      grid-template-columns: repeat(22, minmax(34px, 1fr));
+      grid-template-columns: repeat(21, minmax(34px, 1fr));
       gap: 6px;
       margin: -8px 0 22px;
       padding: 10px;
@@ -2262,36 +2262,26 @@
         id: "s" + (index + 1),
         number: index + 1,
         name: "Étape " + (index + 1),
-        final: false,
         cancelled: false,
         scores: {}
       }));
 
-      stages.push({
-        id: "final",
-        number: 22,
-        name: "Fin de course",
-        final: true,
-        cancelled: false,
-        scores: {}
-      });
-
       const profiles = {
-        Quentin: { base: 355, sprint: 34, climb: 18, final: 1250 },
-        Pierre: { base: 340, sprint: 16, climb: 24, final: 980 },
-        Nans: { base: 365, sprint: 22, climb: 42, final: 1120 },
-        Damien: { base: 348, sprint: 30, climb: 30, final: 1030 },
-        Robin: { base: 334, sprint: 12, climb: 48, final: 1080 },
-        Mathis: { base: 326, sprint: 26, climb: 37, final: 910 },
-        "Émilien": { base: 318, sprint: 20, climb: 22, final: 880 },
-        Sacha: { base: 351, sprint: 44, climb: 12, final: 940 },
-        Agathe: { base: 329, sprint: 24, climb: 32, final: 1010 },
-        Lucie: { base: 336, sprint: 38, climb: 19, final: 950 },
-        Stella: { base: 322, sprint: 18, climb: 34, final: 900 },
-        Charles: { base: 345, sprint: 14, climb: 45, final: 1110 },
-        Orlane: { base: 331, sprint: 21, climb: 40, final: 930 },
-        Ema: { base: 342, sprint: 36, climb: 21, final: 990 },
-        Guillemette: { base: 338, sprint: 28, climb: 39, final: 1040 }
+        Quentin: { base: 355, sprint: 34, climb: 18 },
+        Pierre: { base: 340, sprint: 16, climb: 24 },
+        Nans: { base: 365, sprint: 22, climb: 42 },
+        Damien: { base: 348, sprint: 30, climb: 30 },
+        Robin: { base: 334, sprint: 12, climb: 48 },
+        Mathis: { base: 326, sprint: 26, climb: 37 },
+        "Émilien": { base: 318, sprint: 20, climb: 22 },
+        Sacha: { base: 351, sprint: 44, climb: 12 },
+        Agathe: { base: 329, sprint: 24, climb: 32 },
+        Lucie: { base: 336, sprint: 38, climb: 19 },
+        Stella: { base: 322, sprint: 18, climb: 34 },
+        Charles: { base: 345, sprint: 14, climb: 45 },
+        Orlane: { base: 331, sprint: 21, climb: 40 },
+        Ema: { base: 342, sprint: 36, climb: 21 },
+        Guillemette: { base: 338, sprint: 28, climb: 39 }
       };
 
       const sprintStages = new Set([1, 2, 6, 12, 13, 15, 18, 21]);
@@ -2300,10 +2290,6 @@
       for (const stage of stages) {
         for (const [playerIndex, player] of players.entries()) {
           const profile = profiles[player.name];
-          if (stage.final) {
-            stage.scores[player.id] = profile.final + ((playerIndex % 4) * 35) + wave(playerIndex, 22, 120);
-            continue;
-          }
           let score = profile.base + wave(playerIndex, stage.number, 115);
           score += sprintStages.has(stage.number) ? profile.sprint * 3 : 0;
           score += climbStages.has(stage.number) ? profile.climb * 3 : 0;
@@ -2949,12 +2935,15 @@
         color: player.color || PLAYER_COLORS[index % PLAYER_COLORS.length]
       }));
       const playerIds = new Set(normalized.players.map((player) => player.id));
-      normalized.stages = normalized.stages.map((stage, index) => {
+      const sourceStages = normalized.stages;
+      normalized.stages = Array.from({ length: 21 }, (_, index) => {
+        const number = index + 1;
+        const stageId = "s" + number;
+        const stage = sourceStages.find((item) => item && (item.id === stageId || Number(item.number) === number)) || fallback.stages[index];
         const nextStage = {
-          id: stage.id || (index === 21 ? "final" : "s" + (index + 1)),
-          number: stage.number || index + 1,
-          name: stage.name || (index === 21 ? "Fin de course" : "Étape " + (index + 1)),
-          final: Boolean(stage.final || index === 21),
+          id: stageId,
+          number,
+          name: "Étape " + number,
           cancelled: Boolean(stage.cancelled),
           scores: stage.scores && typeof stage.scores === "object" ? stage.scores : {}
         };
@@ -3186,7 +3175,7 @@
 
     function raceStageRecords() {
       const records = Object.fromEntries(state.data.players.map((player) => [player.id, { wins: 0, podiums: 0, last: 0 }]));
-      const raceStages = state.data.stages.filter((stage) => !stage.final && !stage.cancelled && isStageComplete(stage));
+      const raceStages = state.data.stages.filter((stage) => !stage.cancelled && isStageComplete(stage));
       for (const stage of raceStages) {
         const ranking = stageRanking(stage);
         const minScore = Math.min(...ranking.map((row) => row.score));
@@ -3331,13 +3320,11 @@
       const leader = ranking[0];
       const maxScore = Math.max(1, ...ranking.map((row) => row.score));
       const movement = previousMovementMap();
-      const finalStage = state.data.stages.find((stage) => stage.final);
-      const finalComplete = finalStage && isStageComplete(finalStage);
 
       page.innerHTML = `
         <div class="metric-grid">
           ${metric("Leader", leader ? leader.player.name : "-", leader ? formatNumber(leader.score) + " pts" : "Aucun score")}
-          ${metric("Étapes intégrées", complete.length + "/" + state.data.stages.length, finalComplete ? "Fin de course incluse" : "Partielles ignorées")}
+          ${metric("Étapes intégrées", complete.length + "/" + state.data.stages.length, "Partielles ignorées")}
           ${metric("Meilleur jeune", whiteRanking()[0]?.player.name || "-", whiteRanking()[0] ? formatNumber(whiteRanking()[0].score) + " pts" : "Aucun éligible")}
           ${metric("Joueurs", state.data.players.length, teamNames().length + " équipes actives")}
         </div>
@@ -3538,7 +3525,6 @@
     }
 
     function shortStageLabel(label) {
-      if (label === "Fin de course") return "Final";
       return label.replace("Étape ", "E");
     }
 
@@ -3674,6 +3660,7 @@
       if (!state.selectedDetailPlayerId || !getPlayer(state.selectedDetailPlayerId)) {
         state.selectedDetailPlayerId = state.data.players[0]?.id || null;
       }
+      if (!["all", "completed", "incomplete"].includes(state.detailStageFilter)) state.detailStageFilter = "all";
       const detailPlayers = filteredDetailPlayers();
       const detailStages = filteredDetailStages();
       page.innerHTML = `
@@ -3685,8 +3672,6 @@
               <option value="all" ${state.detailStageFilter === "all" ? "selected" : ""}>Toutes les étapes</option>
               <option value="completed" ${state.detailStageFilter === "completed" ? "selected" : ""}>Étapes complètes</option>
               <option value="incomplete" ${state.detailStageFilter === "incomplete" ? "selected" : ""}>Étapes incomplètes</option>
-              <option value="race" ${state.detailStageFilter === "race" ? "selected" : ""}>Étapes 1 à 21</option>
-              <option value="final" ${state.detailStageFilter === "final" ? "selected" : ""}>Fin de course</option>
             </select>
             <select class="select" id="detailStatusFilter">
               <option value="all" ${state.detailStatusFilter === "all" ? "selected" : ""}>Tous les joueurs</option>
@@ -3747,8 +3732,6 @@
       return state.data.stages.filter((stage) => {
         if (state.detailStageFilter === "completed") return isStageComplete(stage);
         if (state.detailStageFilter === "incomplete") return !isStageComplete(stage);
-        if (state.detailStageFilter === "race") return !stage.final;
-        if (state.detailStageFilter === "final") return stage.final;
         return true;
       });
     }
@@ -3796,7 +3779,7 @@
     }
 
     function renderRaceBrief(ranking, movement) {
-      const lastRaceStage = completedStages().filter((stage) => !stage.final && !stage.cancelled).at(-1);
+      const lastRaceStage = completedStages().filter((stage) => !stage.cancelled).at(-1);
       const lastWinner = lastRaceStage ? stageRanking(lastRaceStage).filter((row) => row.rank === 1).map((row) => row.player.name).join(", ") : "-";
       const bestMover = ranking
         .map((row) => ({ player: row.player, move: movement[row.player.id] || 0 }))
@@ -4330,7 +4313,7 @@
           </div>
           <div class="panel">
             <div class="stage-toolbar">
-              <h2 class="panel-title" style="margin:0">${escapeHtml(activeStage.name)} <small>${activeStage.final ? "Saisie finale" : "Saisie étape"}</small></h2>
+              <h2 class="panel-title" style="margin:0">${escapeHtml(activeStage.name)} <small>Saisie étape</small></h2>
               <span class="status-pill ${completeClass}">${statusText}</span>
             </div>
             <div class="stage-toolbar">
