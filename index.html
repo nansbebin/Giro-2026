@@ -358,27 +358,26 @@
     }
 
     .stage-ribbon {
-      display: grid;
-      grid-template-columns: repeat(21, minmax(34px, 1fr));
-      gap: 8px;
-      margin: -8px 0 22px;
-      padding: 12px;
-      background:
-        linear-gradient(90deg, rgba(255, 237, 0, 0.16), rgba(255, 255, 255, 0) 34%),
-        rgba(255, 255, 255, 0.88);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: 0 10px 26px rgba(6, 27, 58, 0.06);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin: -10px 0 22px;
+      padding: 8px 4px 6px;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      overflow-x: auto;
+      scrollbar-width: thin;
     }
 
     .ribbon-stage {
-      min-width: 0;
-      min-height: 42px;
-      padding: 5px 4px;
-      border-radius: 8px;
-      border: 1px solid var(--line);
-      background: white;
-      color: var(--navy);
+      min-width: 48px;
+      min-height: 55px;
+      padding: 3px 2px 15px;
+      border-radius: 0;
+      border: 0;
+      background: transparent;
+      color: #667489;
       display: grid;
       place-items: center;
       gap: 2px;
@@ -387,28 +386,60 @@
       font-size: 13px;
       line-height: 1;
       position: relative;
-      overflow: hidden;
-      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+      overflow: visible;
+      transition: transform 160ms ease, color 160ms ease;
     }
 
     .ribbon-stage::before {
       content: "";
       position: absolute;
-      inset: auto 7px 5px;
-      height: 3px;
-      border-radius: 99px;
+      left: 50%;
+      bottom: 5px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
       background: #cad5e4;
+      transform: translateX(-50%);
+      box-shadow: 0 0 0 5px var(--paper);
+      z-index: 2;
+    }
+
+    .ribbon-stage::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      right: -50%;
+      bottom: 9px;
+      height: 2px;
+      background: #d8e1ed;
+      z-index: 1;
     }
 
     .ribbon-stage:hover {
-      transform: translateY(-1px);
-      border-color: var(--blue);
+      transform: translateY(-2px);
+      color: var(--navy);
+    }
+
+    .ribbon-stage span {
+      width: 35px;
+      height: 35px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: white;
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 18px rgba(6, 27, 58, 0.08);
+      position: relative;
+      z-index: 3;
     }
 
     .ribbon-stage.complete {
+      color: var(--green);
+    }
+
+    .ribbon-stage.complete span {
       background: #f5fff9;
       border-color: #8fd8b9;
-      color: var(--green);
     }
 
     .ribbon-stage.complete::before {
@@ -416,9 +447,12 @@
     }
 
     .ribbon-stage.partial {
-      background: #fff4e1;
-      border-color: #f2d7a6;
       color: #9f6610;
+    }
+
+    .ribbon-stage.partial span {
+      background: #fff8eb;
+      border-color: #f2d7a6;
     }
 
     .ribbon-stage.partial::before {
@@ -426,10 +460,13 @@
     }
 
     .ribbon-stage.cancelled {
-      background: #eef1f5;
-      border-color: #c5ced9;
       color: #596679;
       text-decoration: line-through;
+    }
+
+    .ribbon-stage.cancelled span {
+      background: #eef1f5;
+      border-color: #c5ced9;
     }
 
     .ribbon-stage.cancelled::before {
@@ -437,23 +474,28 @@
     }
 
     .ribbon-stage.active {
+      color: var(--navy);
+    }
+
+    .ribbon-stage.active span {
       background: var(--yellow);
       border-color: var(--yellow-dark);
-      color: var(--navy);
-      box-shadow: 0 0 0 2px rgba(255, 237, 0, 0.25);
+      box-shadow: 0 10px 22px rgba(199, 154, 0, 0.22);
     }
 
     .ribbon-stage.stage-break {
-      box-shadow: -6px 0 0 rgba(6, 27, 58, 0.08);
+      margin-left: 13px;
     }
 
     .ribbon-stage small {
       font-family: var(--font-body);
       color: currentColor;
-      opacity: 0.72;
-      font-size: 9px;
+      opacity: 0.66;
+      font-size: 8px;
       font-weight: 900;
       text-transform: uppercase;
+      position: relative;
+      z-index: 3;
     }
 
     @keyframes pageIn {
@@ -649,35 +691,35 @@
 
     .classification-body {
       display: grid;
-      grid-template-columns: 56px minmax(0, 1fr);
+      grid-template-columns: 86px minmax(0, 1fr);
       align-items: center;
       gap: 11px;
     }
 
     .classification-visual {
-      width: 56px;
-      height: 56px;
+      width: 86px;
+      height: 86px;
       display: grid;
       place-items: center;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.80);
-      border: 1px solid rgba(6, 27, 58, 0.08);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
-      overflow: hidden;
+      border-radius: 0;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      overflow: visible;
     }
 
     .classification-visual img {
-      width: 50px;
-      height: 50px;
+      width: 82px;
+      height: 82px;
       object-fit: contain;
       display: block;
     }
 
     .classification-visual.wide img {
-      width: 54px;
-      height: 38px;
-      object-fit: cover;
-      border-radius: 6px;
+      width: 88px;
+      height: 62px;
+      object-fit: contain;
+      border-radius: 0;
     }
 
     .classification-name {
@@ -716,7 +758,7 @@
     }
 
     .general-ranking-row {
-      grid-template-columns: 58px minmax(180px, 0.72fr) minmax(130px, 0.86fr) minmax(390px, 1fr);
+      grid-template-columns: 58px minmax(180px, 0.78fr) minmax(180px, 1.35fr) minmax(210px, 0.46fr);
       padding: 14px;
       border-left: 5px solid var(--yellow);
       background:
@@ -733,10 +775,41 @@
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: #f7fbff;
+      grid-template-columns: auto 92px;
+      gap: 9px;
     }
 
     .general-ranking-row .score-main {
       font-size: 28px;
+    }
+
+    .general-ranking-row .gap-list {
+      width: 92px;
+      min-width: 92px;
+      gap: 4px;
+    }
+
+    .general-ranking-row .gap-item {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      min-height: 31px;
+      gap: 2px;
+      padding: 4px 7px;
+    }
+
+    .general-ranking-row .gap-label {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      text-align: center;
+      font-size: 8.5px;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .general-ranking-row .gap-value {
+      font-size: 13.5px;
     }
 
     .rank-badge {
@@ -792,43 +865,40 @@
     }
 
     .award-badge {
-      width: 34px;
-      height: 34px;
+      width: 37px;
+      height: 37px;
       display: inline-grid;
       place-items: center;
-      border-radius: 50%;
-      background: white;
-      border: 1px solid rgba(6, 27, 58, 0.16);
-      box-shadow: 0 6px 14px rgba(6, 27, 58, 0.14);
-      overflow: hidden;
+      border-radius: 0;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      overflow: visible;
       flex: 0 0 auto;
     }
 
     .award-badge.stage-win {
-      background:
-        radial-gradient(circle at 34% 24%, rgba(255, 255, 255, 0.96), rgba(255, 237, 0, 0.42) 48%, rgba(244, 180, 31, 0.44));
-      border-color: rgba(244, 180, 31, 0.72);
+      background: transparent;
     }
 
     .award-badge img {
-      width: 31px;
-      height: 31px;
+      width: 37px;
+      height: 37px;
       object-fit: contain;
       display: block;
     }
 
     .award-badge.team-leader {
-      width: 46px;
-      height: 31px;
-      border-radius: 7px;
-      border-color: rgba(255, 237, 0, 0.72);
-      background: #fff600;
+      width: 52px;
+      height: 37px;
+      border-radius: 0;
+      background: transparent;
     }
 
     .award-badge.team-leader img {
-      width: 44px;
-      height: 29px;
-      object-fit: cover;
+      width: 52px;
+      height: 37px;
+      object-fit: contain;
       object-position: center;
     }
 
@@ -2114,10 +2184,6 @@
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
-      .stage-ribbon {
-        grid-template-columns: repeat(11, minmax(38px, 1fr));
-      }
-
       .ranking-row {
         grid-template-columns: 44px minmax(0, 1fr);
       }
@@ -2239,10 +2305,6 @@
         grid-template-columns: repeat(4, minmax(0, 1fr));
       }
 
-      .stage-ribbon {
-        grid-template-columns: repeat(6, minmax(42px, 1fr));
-      }
-
       .settings-row {
         grid-template-columns: 1fr;
       }
@@ -2276,10 +2338,6 @@
 
       .stage-list {
         grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .stage-ribbon {
-        grid-template-columns: repeat(4, minmax(42px, 1fr));
       }
 
       .score-input-row {
@@ -2386,7 +2444,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     const STORAGE_KEY = "fantasy-giro-2026-v1";
-    const APP_VERSION = "2026-06-17-1300";
+    const APP_VERSION = "2026-06-17-1335";
     const TEST_SCORE_BATCH = "tour-2026-random-preview-2026-06-17";
     const SUPABASE_CONFIG = {
       url: "https://paxgisozkvofzmjztrwu.supabase.co",
@@ -3676,28 +3734,28 @@
             label: "Maillot Jaune",
             image: "Maillot Jaune.png",
             value: leader?.player.name || "-",
-            note: leader ? "1er au classement général" : "Aucun score",
+            note: "",
             className: "yellow"
           })}
           ${classificationCard({
             label: "Maillot Vert",
             image: "Maillot Vert.png",
             value: greenLeader?.name || "À saisir",
-            note: greenStage ? "Saisi sur " + greenStage.name : "Dans Points étapes",
+            note: greenStage ? greenStage.name : "",
             className: "green"
           })}
           ${classificationCard({
             label: "Maillot à Pois",
             image: "Maillot à Pois.png",
             value: polkaLeader?.name || "À saisir",
-            note: polkaStage ? "Saisi sur " + polkaStage.name : "Dans Points étapes",
+            note: polkaStage ? polkaStage.name : "",
             className: "polka"
           })}
           ${classificationCard({
             label: "Maillot Blanc",
             image: "Maillot Blanc.png",
             value: whiteLeader?.player.name || "-",
-            note: whiteLeader ? "1er joueur éligible" : "Aucun éligible",
+            note: "",
             className: "white"
           })}
           ${classificationCard({
@@ -3711,7 +3769,7 @@
             label: "Meilleure équipe",
             image: "Dossard meilleure équipe.jpg",
             value: teamLeader?.team || "-",
-            note: teamLeader ? "1ère au classement par équipe" : "Aucune équipe",
+            note: "",
             className: "team",
             wide: true
           })}
